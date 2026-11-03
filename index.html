@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>学園祭の支払いを、LINEで。校内通貨「MeiPay」｜株式会社TeaBreak</title>
+<meta name="description" content="明聖高等学校の学園祭で使う校内通貨「MeiPay」の2026年10月の実績。会員証もレジもLINEの中で動かし、3日間で支払い7,989件。決済は止まらず、残高のずれは0。">
+<link rel="canonical" href="https://tnakajo42.github.io/meipay/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="株式会社TeaBreak">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="学園祭の支払いを、LINEで。明聖高等学校の校内通貨「MeiPay」2026年10月の実績">
+<meta property="og:description" content="会員証もレジもLINEの中に。本校と中野キャンパスの3日間で支払い7,989件。決済は止まらず、残高のずれは0。">
+<meta property="og:url" content="https://tnakajo42.github.io/meipay/">
+<meta property="og:image" content="https://tnakajo42.github.io/meipay/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="学園祭の支払いを、LINEで。校内通貨「MeiPay」3日間で支払い7,989件">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="学園祭の支払いを、LINEで。明聖高等学校の校内通貨「MeiPay」2026年10月の実績">
+<meta name="twitter:description" content="会員証もレジもLINEの中に。本校と中野キャンパスの3日間で支払い7,989件。決済は止まらず、残高のずれは0。">
+<meta name="twitter:image" content="https://tnakajo42.github.io/meipay/ogp.jpg">
+<meta name="theme-color" content="#0F3D45">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230F3D45'/%3E%3Cg%20fill='none'%20stroke='%23F4C542'%20stroke-width='5'%3E%3Crect%20x='11.5'%20y='11.5'%20width='16'%20height='16'%20rx='2'/%3E%3Crect%20x='36.5'%20y='11.5'%20width='16'%20height='16'%20rx='2'/%3E%3Crect%20x='11.5'%20y='36.5'%20width='16'%20height='16'%20rx='2'/%3E%3C/g%3E%3Crect%20x='37'%20y='37'%20width='15'%20height='15'%20rx='2'%20fill='%23F4C542'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --ink: #15292E;
+    --muted: #4B6065;
+    --bg: #F6F4EE;
+    --surface: #FFFFFF;
+    --line: #DDE3E0;
+    --teal: #0F3D45;
+    --teal-2: #17525C;
+    --teal-soft: #E3EDEB;
+    --gold: #F4C542;
+    --gold-soft: #FBF1D3;
+    --on-dark: #FFFFFF;
+    --on-dark-muted: #BFD2D2;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+  img, video { display: block; max-width: 100%; }
+  a { color: var(--teal-2); text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 56px 0; }
+  h1, h2, h3 { font-feature-settings: "palt"; word-break: auto-phrase; text-wrap: balance; }
+  .nw { white-space: nowrap; }
+  h2 { margin: 0 0 20px; font-size: clamp(25px, 6.4vw, 36px); line-height: 1.4; font-weight: 800; letter-spacing: .01em; color: var(--teal); }
+  h3 { line-height: 1.5; }
+  p { margin: 0 0 1em; }
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font-size: 14px; font-weight: 700; letter-spacing: .08em; color: var(--teal-2); }
+  .eyebrow::before { content: ""; width: 24px; height: 4px; border-radius: 2px; background: var(--gold); }
+  .lead { font-size: 17px; }
+  .note { font-size: 13px; line-height: 1.7; color: var(--muted); margin: 0; }
+  .notes { margin: 20px 0 0; padding: 0; list-style: none; }
+  .notes li { font-size: 13px; line-height: 1.7; color: var(--muted); }
+
+  /* hero */
+  .hero { background: var(--teal); color: var(--on-dark); padding: 18px 0 48px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 32px; font-size: 14px; color: var(--on-dark-muted); }
+  .topbar strong { color: var(--on-dark); font-weight: 700; letter-spacing: .02em; }
+  .topbar a { color: var(--on-dark-muted); }
+  .kicker { margin: 0 0 14px; color: var(--gold); font-size: 16px; font-weight: 700; letter-spacing: .04em; }
+  h1 { margin: 0; font-weight: 800; line-height: 1.25; font-size: clamp(30px, 8.2vw, 46px); }
+  h1 .big { display: block; margin-top: 2px; font-size: clamp(60px, 18vw, 92px); line-height: 1.1; letter-spacing: .01em; }
+  .rule { width: 64px; height: 5px; margin: 24px 0 20px; border-radius: 3px; background: var(--gold); }
+  .hero-sub { margin: 0; color: var(--gold); font-size: clamp(18px, 4.8vw, 22px); font-weight: 700; line-height: 1.6; }
+  .hero-lead { margin: 10px 0 0; color: #E3ECEC; font-size: 15px; word-break: auto-phrase; }
+  .hero-fig { margin: 32px 0 0; }
+  .hero-fig img { width: 100%; height: auto; border-radius: 14px; }
+
+  /* numbers */
+  .stats { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stats li { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; padding: 18px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  .stats li.hl { background: var(--teal); border-color: var(--teal); }
+  .stat-num { white-space: nowrap; font-weight: 800; color: var(--teal); font-size: clamp(30px, 8vw, 52px); line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+  .stats li.hl .stat-num { color: var(--gold); }
+  .stat-num small { margin-left: 2px; font-size: .46em; font-weight: 700; letter-spacing: 0; }
+  .stat-num.word { font-size: clamp(24px, 6.6vw, 40px); }
+  .stat-label { font-size: 14px; line-height: 1.55; color: var(--muted); font-weight: 600; }
+  .stats li.hl .stat-label { color: var(--on-dark-muted); }
+
+  /* how it works */
+  .steps { list-style: none; counter-reset: step; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .steps li { position: relative; padding: 18px 18px 18px 66px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 16px; top: 18px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: var(--gold); font-weight: 800; line-height: 1; }
+  .steps h3 { margin: 4px 0 4px; font-size: 17px; }
+  .steps p { margin: 0; font-size: 15px; color: var(--muted); }
+  .points { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+  .points li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 12px; background: var(--teal-soft); font-size: 15px; line-height: 1.7; }
+  .points svg { flex: none; margin-top: 3px; color: var(--teal); }
+  .points b { color: var(--teal); }
+  .menu-title { margin: 40px 0 14px; font-size: 19px; color: var(--teal); }
+  .menu { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .menu li { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .menu .ic { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--teal); color: var(--gold); }
+  .menu b { display: block; font-size: 16px; line-height: 1.5; color: var(--teal); }
+  .menu span { display: block; font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+  /* media */
+  .media { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; margin-top: 8px; }
+  .media figure { margin: 0; }
+  .frame { aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: var(--teal); }
+  .frame img, .frame video { width: 100%; height: 100%; object-fit: cover; }
+  .frame .pos-card { object-position: 50% 75%; }
+  .media figcaption { margin-top: 8px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+  .tag { display: inline-block; margin-right: 6px; padding: 0 7px; border-radius: 4px; background: var(--teal); color: var(--on-dark); font-size: 11px; font-weight: 700; line-height: 1.8; vertical-align: 1px; }
+
+  /* venues */
+  .venues { display: grid; gap: 16px; }
+  .venue { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+  .venue h3 { margin: 0; padding: 16px 18px; background: var(--teal); color: var(--on-dark); font-size: 18px; }
+  .venue h3 small { display: block; color: var(--gold); font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+  .venue table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
+  .venue th, .venue td { padding: 12px 18px; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+  .venue tr:first-child th, .venue tr:first-child td { border-top: 0; }
+  .venue th { width: 38%; padding-right: 8px; font-size: 14px; font-weight: 600; color: var(--muted); }
+  .venue td { padding-left: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .venue td .sub { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+  .peak { display: flex; gap: 16px; align-items: center; margin-top: 16px; padding: 18px 20px; border-radius: 14px; background: var(--gold-soft); border-left: 6px solid var(--gold); }
+  .peak .n { flex: none; font-size: clamp(34px, 9vw, 44px); font-weight: 800; line-height: 1; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .peak .n small { font-size: .45em; }
+  .peak p { margin: 0; font-size: 15px; line-height: 1.7; }
+
+  /* voices */
+  .voices { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .voices li { position: relative; padding: 22px 20px 20px 20px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-size: 16px; line-height: 1.8; font-weight: 600; }
+  .voices li::before { content: "“"; display: block; height: 26px; margin-bottom: 4px; font-family: Georgia, "Times New Roman", serif; font-size: 48px; line-height: 1; color: var(--gold); }
+  .requests { margin: 24px 0 0; padding: 18px 20px; border-radius: 14px; background: var(--teal-soft); }
+  .requests p { margin: 0; font-size: 15px; }
+  .requests ul { margin: 8px 0 10px; padding-left: 1.2em; font-size: 15px; line-height: 1.8; }
+
+  /* trust (dark band) */
+  .dark { background: var(--teal); color: var(--on-dark); }
+  .dark h2 { color: var(--on-dark); }
+  .dark .eyebrow { color: var(--on-dark-muted); }
+  .dark .lead { color: #E3ECEC; }
+  .checks { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 12px; }
+  .checks li { padding: 18px 18px; border-radius: 14px; background: var(--teal-2); }
+  .checks b { display: block; margin-bottom: 4px; color: var(--gold); font-size: 18px; line-height: 1.5; font-feature-settings: "palt"; word-break: auto-phrase; }
+  .checks span { display: block; font-size: 15px; line-height: 1.75; color: #E3ECEC; }
+
+  /* third year */
+  .year { display: grid; gap: 24px; }
+  .comment { margin: 0; padding: 24px 22px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+  .comment p { margin: 0 0 14px; font-size: 16px; line-height: 1.9; }
+  .comment footer { font-size: 14px; color: var(--muted); }
+  .history { list-style: none; margin: 20px 0 18px; padding: 0; border-left: 4px solid var(--gold); }
+  .history li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 10px; padding: 8px 0 8px 16px; font-size: 15px; line-height: 1.7; word-break: auto-phrase; }
+  .history li + li { border-top: 1px solid var(--line); }
+  .history .yr { white-space: nowrap; font-weight: 800; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .watch { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--ink); text-decoration: none; }
+  .watch:hover { border-color: var(--teal-2); }
+  .watch:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .watch .play { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: var(--gold); }
+  .watch .play svg { margin-left: 2px; }
+  .watch b { display: block; font-size: 15px; line-height: 1.55; color: var(--teal); }
+  .watch .meta { display: block; margin-top: 2px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+  /* cta */
+  .cta { padding: 32px 22px; border-radius: 20px; background: var(--teal); color: var(--on-dark); }
+  .cta h2 { color: var(--on-dark); font-size: clamp(22px, 5.8vw, 32px); }
+  .cta p { color: #E3ECEC; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 26px; border-radius: 999px; background: var(--gold); color: var(--teal); font-size: 17px; font-weight: 800; text-decoration: none; }
+  .btn:hover { background: #F7D266; }
+  .cta .mail { margin: 14px 0 0; font-size: 14px; color: var(--on-dark-muted); }
+  .cta .mail a { color: var(--on-dark); }
+
+  /* reports */
+  .reports { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .reports a { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--ink); text-decoration: none; }
+  .reports a:hover { border-color: var(--teal-2); }
+  .reports .pdf { flex: none; width: 44px; height: 52px; border-radius: 6px; display: grid; place-items: center; background: var(--teal); color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+  .reports b { display: block; min-width: 0; font-size: 16px; line-height: 1.5; color: var(--teal); word-break: auto-phrase; font-feature-settings: "palt"; }
+  .next { margin-top: 28px; }
+  .next h3 { margin: 0 0 8px; font-size: 17px; color: var(--teal); }
+  .next ul { margin: 0; padding-left: 1.2em; font-size: 15px; line-height: 1.85; }
+
+  /* company */
+  .vision { margin: 0 0 20px; font-size: clamp(20px, 5.4vw, 26px); font-weight: 800; color: var(--teal); line-height: 1.5; font-feature-settings: "palt"; }
+  .company { max-width: 720px; margin: 0; border-top: 1px solid var(--line); }
+  .company div { display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.7; }
+  .company dt { color: var(--muted); font-weight: 600; }
+  .company dd { margin: 0; font-weight: 600; }
+
+  .site-footer { padding: 28px 0 36px; background: var(--teal); color: var(--on-dark-muted); font-size: 13px; line-height: 1.8; }
+  .site-footer p { margin: 0; }
+  .site-footer .copy { margin-top: 8px; color: var(--on-dark); }
+
+  .alt { background: #EEF2EF; }
+
+  @media (min-width: 720px) {
+    .wrap { padding: 0 32px; }
+    section { padding: 80px 0; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .stats li { padding: 22px 20px; }
+    .steps { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .steps li { padding: 20px 20px 22px; }
+    .steps li::before { position: static; margin-bottom: 12px; }
+    .points { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .menu { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .menu li { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 16px; }
+    .media { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .venues { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .voices { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .checks { grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .checks li { grid-column: span 2; }
+    .checks li.wide { grid-column: span 3; }
+    .reports { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cta { padding: 48px 48px; }
+  }
+  @media (min-width: 960px) {
+    .hero { padding: 22px 0 80px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 56px; align-items: center; }
+    .hero-fig { margin: 0; }
+    .stats { grid-template-columns: repeat(4, 1fr); }
+    .year { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 48px; align-items: start; }
+    .cta-inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+    .cta-action { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <strong>株式会社TeaBreak</strong>
+      <a href="#contact">ご相談</a>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">2026年10月の実績</p>
+        <h1>学園祭の支払いを、<span class="big">LINEで。</span></h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="hero-sub">明聖高等学校の校内通貨「MeiPay」</p>
+        <p class="hero-lead">会員証もレジも、LINEの中に。本校と中野キャンパスの学園祭、3日間の記録です。</p>
+      </div>
+      <figure class="hero-fig">
+        <img src="img/hero.jpg" width="1200" height="914" alt="LINEの会員証とメニューの画面と、模擬店の会計でスマートフォンを差し出す手元" fetchpriority="high">
+      </figure>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="numbers" aria-labelledby="numbers-h">
+  <div class="wrap">
+    <p class="eyebrow">3日間の結果</p>
+    <h2 id="numbers-h"><span class="nw">決済は止まらず、</span><span class="nw">残高のずれは0</span></h2>
+    <p class="lead">株式会社TeaBreakは、学校法人花沢学園 明聖高等学校の学園祭で使う校内通貨「MeiPay（メイペイ）」のLINEボットを開発し、2026年10月の本番を運用しました。会場は、本校の「2026明聖祭」と、中野キャンパスの「第10回学園祭」。</p>
+    <ul class="stats">
+      <li class="hl"><span class="stat-num">7,989<small>件</small></span><span class="stat-label">3日間の支払い</span></li>
+      <li><span class="stat-num word">止まらず</span><span class="stat-label">決済は3日間とも</span></li>
+      <li><span class="stat-num">0</span><span class="stat-label">残高のずれ<br>5分おきの照合で</span></li>
+      <li><span class="stat-num">2<small>会場</small></span><span class="stat-label">本校と<br>中野キャンパス</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="how" class="alt" aria-labelledby="how-h">
+  <div class="wrap">
+    <p class="eyebrow">しくみ</p>
+    <h2 id="how-h">会員証もレジも、LINEの中に</h2>
+    <ol class="steps">
+      <li>
+        <h3>友だち追加して、会員登録</h3>
+        <p>生徒も保護者も、まず学園祭のLINE公式アカウントを友だち追加。</p>
+      </li>
+      <li>
+        <h3>「会員証」でQRと残高</h3>
+        <p>メニューの「会員証」を押すと、QRコードと残高が出ます。</p>
+      </li>
+      <li>
+        <h3>係のスマートフォンで読み取り</h3>
+        <p>模擬店では、係が会員証のQRを読み取り、金額を入れて確定。</p>
+      </li>
+    </ol>
+    <ul class="points">
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>専用のレジ機器は置きません。</b>係のスマートフォンがレジ代わり。</span></li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>チャージも付与もLINEで。</b>受付でのチャージも、先生による付与も同じ流れ。</span></li>
+      <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span><b>初回の付与は自動。</b>在校生・中学生・先生など、区分ごとに決めた額が入ります。</span></li>
+    </ul>
+
+    <h3 class="menu-title">メニューは5つ</h3>
+    <ul class="menu">
+      <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><rect x="6.5" y="8.5" width="5" height="5"/><path d="M14.5 9.5h3M14.5 13h2.5"/></svg></span><div><b>会員証</b><span>QRコードと残高</span></div></li>
+      <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.8-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg></span><div><b>フロアマップ</b><span>校内の案内図</span></div></li>
+      <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg></span><div><b>催事CM</b><span>催しの紹介動画</span></div></li>
+      <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-6 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2.6"/></svg></span><div><b>委員長に質問</b><span>AIが実行委員長として、出し物などの質問に答える</span></div></li>
+      <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.5h17v7.5h-17z"/><path d="M8 12.5V4.5h8v8"/><path d="M10.5 8h3"/></svg></span><div><b>投票ページ</b><span>クラスへの投票フォーム</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="scenes" aria-labelledby="scenes-h">
+  <div class="wrap">
+    <p class="eyebrow">当日の様子</p>
+    <h2 id="scenes-h">模擬店の会計は、<span class="nw">スマートフォンだけ</span></h2>
+    <div class="media">
+      <figure>
+        <div class="frame"><img src="img/photo-register.jpg" width="800" height="1422" loading="lazy" alt="模擬店のカウンター越しに、お客さんがスマートフォンの会員証を差し出す手元"></div>
+        <figcaption>模擬店の会計。お客さんのLINEの会員証を、係のスマートフォンで読み取ります。</figcaption>
+      </figure>
+      <figure>
+        <div class="frame">
+          <video controls muted loop playsinline preload="none" width="720" height="1280" poster="video/register-scan-poster.jpg" aria-label="模擬店のレジで、会員証を読み取る様子の動画（18秒・音なし）">
+            <source src="video/register-scan.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption><span class="tag">動画18秒</span>模擬店のレジで、机に置いた会員証を読み取る様子。</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img class="pos-card" src="img/photo-card-menu.jpg" width="800" height="1738" loading="lazy" alt="LINEの会員証画面と、会員証・フロアマップ・催事CM・委員長に質問・投票ページの5つのメニュー"></div>
+        <figcaption>LINEの会員証とメニュー。QRコードと氏名はぼかしています。</figcaption>
+      </figure>
+      <figure>
+        <div class="frame">
+          <video controls muted loop playsinline preload="none" width="720" height="1280" poster="video/show-card-poster.jpg" aria-label="LINEで会員証を出して見せる様子の動画（11秒・音なし）">
+            <source src="video/show-card.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption><span class="tag">動画11秒</span>LINEで会員証を出して見せる様子。</figcaption>
+      </figure>
+    </div>
+    <p class="note" style="margin-top:16px">写真と動画は、学校の許可を得て掲載しています。動画は音なしで、映っている方の顔はぼかしています。</p>
+  </div>
+</section>
+
+<section id="venues" class="alt" aria-labelledby="venues-h">
+  <div class="wrap">
+    <p class="eyebrow">会場ごとの数字</p>
+    <h2 id="venues-h">2会場・3日間の記録</h2>
+    <div class="venues">
+      <div class="venue">
+        <h3><small>本校</small>2026明聖祭</h3>
+        <table>
+          <tr><th scope="row">日程</th><td>10月23日（金）<span class="sub">在校生のみの日</span>10月24日（土）<span class="sub">一般公開</span></td></tr>
+          <tr><th scope="row">支払いの件数</th><td>5,634件</td></tr>
+          <tr><th scope="row">支払いの金額</th><td>1,832,930 MeiPay</td></tr>
+          <tr><th scope="row">支払った人</th><td>1,135人</td></tr>
+          <tr><th scope="row">会員</th><td>1,266人</td></tr>
+          <tr><th scope="row">レジ</th><td>15か所</td></tr>
+          <tr><th scope="row">残高の照合</th><td>266回、ずれ0<span class="sub">5分おき</span></td></tr>
+          <tr><th scope="row">決済</th><td>2日間とも止まらず</td></tr>
+        </table>
+      </div>
+      <div class="venue">
+        <h3><small>中野キャンパス</small>第10回学園祭</h3>
+        <table>
+          <tr><th scope="row">日程</th><td>10月25日（日）</td></tr>
+          <tr><th scope="row">支払いの件数</th><td>2,355件</td></tr>
+          <tr><th scope="row">支払いの金額</th><td>622,000 MeiPay</td></tr>
+          <tr><th scope="row">支払った人</th><td>529人</td></tr>
+          <tr><th scope="row">会員</th><td>620人<span class="sub">うち当日登録229人</span></td></tr>
+          <tr><th scope="row">レジ</th><td>9か所</td></tr>
+          <tr><th scope="row">残高の照合</th><td>109回、ずれ0<span class="sub">5分おき</span></td></tr>
+          <tr><th scope="row">決済</th><td>1日を通して止まらず</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="peak">
+      <div class="n">499<small>件</small></div>
+      <p>いちばん混んだのは、本校の一般公開日の昼。12時7分からの30分に、499件の支払いが集まりました。</p>
+    </div>
+    <ul class="notes">
+      <li>※MeiPayは学園祭の中だけで使う校内通貨の単位で、円ではありません。</li>
+      <li>※会員の数は、登録の途中の方と退会した方を含みます。</li>
+      <li>※数字は閉場後に記録を読み取って数えたものです（本校は10月24日夜、中野キャンパスは10月25日17時すぎ）。</li>
+    </ul>
+  </div>
+</section>
+
+<section id="voices" aria-labelledby="voices-h">
+  <div class="wrap">
+    <p class="eyebrow">使った人の声</p>
+    <h2 id="voices-h">「支払いスムーズでした！」</h2>
+    <p>中野キャンパスで学校が行ったアンケート「開発者に伝えたいこと」から、原文のまま一部を紹介します。</p>
+    <ul class="voices">
+      <li>スムーズに使用が出来ました！ 残金もちゃんとわかるのでお買い物しやすかったです。毎年改良されててすごいなと思います。</li>
+      <li>使いやすくて分かりやすいです。</li>
+      <li>支払いスムーズでした！</li>
+    </ul>
+    <div class="requests">
+      <p>一方で、こんな声も届きました。</p>
+      <ul>
+        <li>「上限４００円なのが気になった」</li>
+        <li>「もう少し細かい金額でチャージできるともっと嬉しいです。」</li>
+        <li>「支払い後、残高をチャット通知してくれると嬉しいと思います。」</li>
+      </ul>
+      <p>次回の設計に生かします。</p>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="dark" aria-labelledby="trust-h">
+  <div class="wrap">
+    <p class="eyebrow">お金の扱い</p>
+    <h2 id="trust-h">お金の数字を、合わせ続ける</h2>
+    <p class="lead">当日の点検と、もしものときの備え。</p>
+    <ul class="checks">
+      <li><b>5分おきに照合、ずれ0</b><span>全員の残高を、取引の記録と突き合わせました。本校266回、中野キャンパス109回。ずれは一度も出ませんでした。</span></li>
+      <li><b>異常は運営にメールで届く</b><span>サーバーの異常や残高のずれがあれば、運営にメールで届く設定です。</span></li>
+      <li><b>過去7日に戻せる</b><span>誤ってデータを消しても、過去7日のうちの時点に戻せます。</span></li>
+      <li class="wide"><b>14,253回すべてに応答</b><span>中野キャンパスでは、LINEからの呼び出しにすべて応答。95%は0.29秒以内に返しました。</span></li>
+      <li class="wide"><b>お問い合わせは当日中に</b><span>中野キャンパスで学校からいただいたお問い合わせ4件に、記録を調べて当日中にお返事。</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="story" aria-labelledby="story-h">
+  <div class="wrap">
+    <div class="year">
+      <div>
+        <p class="eyebrow">これまで</p>
+        <h2 id="story-h">担当して3年目</h2>
+        <p>代表の仲条は、2024年から明聖高等学校の学園祭でLINEボットを担当しています。今年で3年目。</p>
+        <p>中野キャンパスでは、9月から登録を受け付けました。</p>
+        <ul class="history">
+          <li><span class="yr">2024年から</span><span>明聖高等学校（本校・中野キャンパス）</span></li>
+          <li><span class="yr">2025年</span><span>福島県の郡山北工業高等学校<br>LINEボット「キタコバン」</span></li>
+        </ul>
+        <a class="watch" href="https://youtu.be/B3XWteKxIr8" target="_blank" rel="noopener"><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span><span><b>郡山北工業高等学校にてLINEボット『キタコバン』つくってきた</b><span class="meta">YouTube・約12分</span></span></a>
+      </div>
+      <blockquote class="comment">
+        <p>「学園祭のお金は、生徒が準備してきた出し物の売上です。1件でも数字が合わなければ、仕組みそのものが信用されません。3日間、決済が止まらず、残高のずれも0で終えられたのは、先生方と生徒の皆さんが新しい仕組みを使いこなしてくださったおかげです。アンケートでいただいた支払いの上限やチャージの声は、来年に向けて直していきます。」</p>
+        <footer>株式会社TeaBreak<br>代表取締役　仲条 高幸</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="cta">
+      <div class="cta-inner">
+        <div>
+          <h2 id="contact-h">学園祭・文化祭を担当する先生方へ</h2>
+          <p>LINEで使う校内通貨や、会計・投票・案内のデジタル化について、ご相談を受け付けています。行事の規模や当日の体制に合わせて、仕組みと運用の形をご提案します。</p>
+        </div>
+        <div class="cta-action">
+          <a class="btn" href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AELINE%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>メールで相談する</a>
+          <p class="mail">t.nakajo@tea-break.co.jp</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reports" aria-labelledby="reports-h">
+  <div class="wrap">
+    <p class="eyebrow">資料</p>
+    <h2 id="reports-h">運用報告 公開版</h2>
+    <p>学校へ提出した報告を、学校の了承を得て公開用にまとめたものです。</p>
+    <ul class="reports">
+      <li><a href="files/meipay-report-honkou-2026-public.pdf"><span class="pdf">PDF</span><b>MeiPay運用報告 公開版<br>（2026明聖祭・本校・<span class="nw">10月23日〜24日）</span></b></a></li>
+      <li><a href="files/meipay-report-nakano-2026-public.pdf"><span class="pdf">PDF</span><b>MeiPay運用報告 公開版<br>（第10回学園祭・中野キャンパス・<span class="nw">10月25日）</span></b></a></li>
+    </ul>
+    <div class="next">
+      <h3>次回に向けて</h3>
+      <ul>
+        <li>投票フォームは、受付が始まってからも、票が数えられているかを確かめ続ける</li>
+        <li>レジ係の手順と、会員証で残高を見直す方法は、当日より前にお伝えする</li>
+        <li>1回に払える上限は、1回のお会計の合計に合わせる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="company" class="alt" aria-labelledby="company-h">
+  <div class="wrap">
+    <p class="eyebrow">会社の情報</p>
+    <h2 id="company-h">株式会社TeaBreak</h2>
+    <p class="vision">消えゆく日本を、残す会社。</p>
+    <dl class="company">
+      <div><dt>会社名</dt><dd>株式会社TeaBreak</dd></div>
+      <div><dt>代表者</dt><dd>代表取締役　仲条 高幸</dd></div>
+      <div><dt>お問い合わせ</dt><dd><a href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AELINE%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">t.nakajo@tea-break.co.jp</a></dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>※「LINE」は、LINEヤフー株式会社の商標または登録商標です。</p>
+    <p class="copy">© 2026 TeaBreak Inc.</p>
+  </div>
+</footer>
+
+</body>
+</html>
