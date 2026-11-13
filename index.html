@@ -27,16 +27,17 @@
   :root {
     --ink: #15292E;
     --muted: #4B6065;
-    --bg: #F6F4EE;
-    --bg-alt: #EEF2EF;
+    --bg: #FAF9F7;
+    --bg-alt: #F1F6F6;
     --surface: #FFFFFF;
-    --line: #DDE3E0;
+    --line: #D9E2E3;
     --teal: #0F3D45;
     --teal-2: #17525C;
-    --teal-soft: #E3EDEB;
+    --teal-soft: #E7F1F2;
     --gold: #F4C542;
     --gold-hover: #F7D266;
-    --gold-soft: #FBF1D3;
+    --gold-soft: #FDF8EA;
+    --gold-line: #E9B93A;
     --on-dark: #FFFFFF;
     --on-dark-2: #E3ECEC;
     --on-dark-muted: #BFD2D2;
@@ -55,6 +56,7 @@
     font-size: 16px;
     line-height: 1.85;
     overflow-wrap: anywhere;
+    line-break: strict;
   }
   img, video { display: block; max-width: 100%; }
   a { color: var(--teal-2); text-underline-offset: 3px; }
@@ -64,18 +66,49 @@
   section { padding: 56px 0; }
   h1, h2, h3 { font-feature-settings: "palt"; word-break: auto-phrase; text-wrap: balance; }
   .nw { white-space: nowrap; }
+  .checks .nw, .menu .nw, .proof .nw { display: inline; font-size: inherit; font-weight: inherit; line-height: inherit; color: inherit; }
   h2 { margin: 0 0 20px; font-size: clamp(25px, 6.4vw, 36px); line-height: 1.4; font-weight: 800; letter-spacing: .01em; color: var(--teal); }
   h3 { line-height: 1.5; }
   p { margin: 0 0 1em; text-wrap: pretty; }
   .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font-size: 14px; font-weight: 700; letter-spacing: .08em; color: var(--teal-2); }
-  .eyebrow::before { content: ""; width: 24px; height: 4px; border-radius: 2px; background: var(--gold); }
+  .eyebrow::before { content: ""; width: 24px; height: 4px; border-radius: 2px; background: var(--gold-line); }
+  .hero .eyebrow::before, .dark .eyebrow::before, .cta .eyebrow::before { background: var(--gold); }
   .lead { font-size: 17px; }
   .measure { max-width: 46em; }
   .note { font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
   .notes { margin: 20px 0 0; padding: 0; list-style: none; }
-  .notes li { font-size: 14px; line-height: 1.7; color: var(--muted); }
+  .notes li { font-size: 14px; line-height: 1.7; color: var(--muted); text-wrap: pretty; }
   .alt { background: var(--bg-alt); }
   .ic-svg { flex: none; width: 20px; height: 20px; }
+  .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* bar charts: a real table, each value drawn as a bar with the number beside it */
+  .chart { max-width: 820px; margin: 24px 0 0; padding: 18px 16px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  .chart figcaption { margin: 0 0 10px; }
+  .chart .ttl { display: block; font-size: 17px; font-weight: 800; line-height: 1.5; color: var(--teal); font-feature-settings: "palt"; word-break: auto-phrase; }
+  .chart .unit { display: block; font-size: 14px; line-height: 1.6; color: var(--muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0 0 8px; padding: 0; list-style: none; font-size: 14px; line-height: 1.6; color: var(--ink); }
+  .legend li { display: flex; align-items: center; gap: 6px; }
+  .legend i { flex: none; width: 14px; height: 14px; border-radius: 3px; background: var(--c-strong); }
+  .legend i.light { background: var(--c-light); }
+  .bars { --c-bar: #17525C; width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.45; }
+  .bars th { width: 1%; padding: 5px 12px 5px 0; text-align: left; vertical-align: middle; font-weight: 600; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .bars th small { display: block; font-size: 12px; font-weight: 500; white-space: normal; }
+  .bars th.wrap { width: 10.2em; white-space: normal; word-break: auto-phrase; }
+  .bars th .nw { white-space: nowrap; }
+  .bars td { padding: 5px 0; vertical-align: middle; }
+  .br { display: flex; align-items: center; gap: 6px; min-height: 18px; }
+  .br + .br { margin-top: 2px; }
+  .br .b { flex: none; width: calc((100% - 4.6em) * var(--r)); height: 16px; border-radius: 0 4px 4px 0; background: var(--c-bar); }
+  .br .v { white-space: nowrap; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .bars.pair .br .b { height: 12px; }
+  .bars.pair .br.light .b, .bars.peak-at .br .b { background: var(--c-light); }
+  .bars.peak-at tr.top .br .b { background: var(--c-strong); }
+  .bars.peak-at tr.top th, .bars.peak-at tr.top .v { color: var(--teal); font-weight: 800; }
+  .bars.pair .br.light .v { font-weight: 600; }
+  .chart, .legend { --c-strong: #0F3D45; --c-light: #579AA6; }
+  .bars.pair { --c-bar: var(--c-strong); }
+  .chart .foot { margin: 10px 0 0; font-size: 14px; line-height: 1.7; color: var(--muted); }
 
   /* buttons */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 12px 22px; border-radius: 999px; background: var(--gold); color: var(--teal); font-size: 17px; font-weight: 800; line-height: 1.3; text-align: center; text-decoration: none; }
@@ -144,24 +177,42 @@
   .media figure { margin: 0; }
   .frame { aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: var(--teal); }
   .frame img, .frame video { width: 100%; height: 100%; object-fit: cover; }
-  .media figcaption { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+  .media figcaption { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--muted); text-wrap: balance; }
   .tag { display: inline-block; margin-right: 6px; padding: 0 7px; border-radius: 4px; background: var(--teal); color: var(--on-dark); font-size: 12px; font-weight: 700; line-height: 1.8; vertical-align: 1px; }
 
   /* venues */
-  .venues { display: grid; gap: 16px; }
-  .venue { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
-  .venue h3 { margin: 0; padding: 16px 18px; background: var(--teal); color: var(--on-dark); font-size: 18px; }
-  .venue h3 small { display: block; color: var(--gold); font-size: 14px; font-weight: 700; letter-spacing: .04em; }
-  .venue table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.6; }
-  .venue th, .venue td { padding: 12px 18px; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
-  .venue tr:first-child th, .venue tr:first-child td { border-top: 0; }
-  .venue th { width: 38%; padding-right: 8px; font-size: 16px; font-weight: 600; color: var(--muted); }
-  .venue td { padding-left: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .venue td .sub { display: block; font-size: 14px; font-weight: 500; color: var(--muted); }
-  .peak { display: flex; gap: 16px; align-items: center; margin-top: 16px; padding: 18px 20px; border-radius: 14px; background: var(--gold-soft); border-left: 6px solid var(--gold); }
+  .vtable { width: 100%; max-width: 860px; border-collapse: collapse; table-layout: fixed; background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); font-size: 15px; line-height: 1.55; font-variant-numeric: tabular-nums; }
+  .vtable thead th { padding: 12px 10px; background: var(--teal); color: var(--on-dark); font-size: 15px; line-height: 1.4; text-align: left; vertical-align: bottom; }
+  .vtable thead td { width: 6.6em; background: var(--teal); }
+  .vtable thead th small { display: block; color: var(--gold); font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+  .vtable tbody th, .vtable tbody td { padding: 10px 10px; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+  .vtable tbody tr:first-child th, .vtable tbody tr:first-child td { border-top: 0; }
+  .vtable tbody th { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .vtable tbody td { font-weight: 700; }
+  .vtable td .sub { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+  .vtable td .u { display: inline-block; }
+  .vtable .day { display: block; font-size: 14px; }
+  .vtable .nw2 { white-space: nowrap; }
+  /* narrow phones: the item name runs across, the two venues sit side by side below it */
+  @media (max-width: 479.98px) {
+    .vtable, .vtable thead, .vtable tbody { display: block; }
+    .vtable tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .vtable thead td { display: none; }
+    .vtable thead th { padding: 12px 12px; }
+    .vtable tbody th { grid-column: 1 / -1; padding: 9px 12px 0; border-top: 1px solid var(--line); font-size: 13px; }
+    .vtable tbody td { padding: 0 12px 9px; border-top: 0; }
+    .vtable tbody tr:first-child th { border-top: 0; }
+  }
+  .viz-h { margin: 36px 0 6px; font-size: clamp(19px, 5vw, 23px); color: var(--teal); }
+  .charts { display: grid; gap: 16px; margin-top: 14px; }
+  .charts .chart { margin: 0; }
+  .peak { display: flex; gap: 16px; align-items: center; margin-top: 16px; padding: 18px 20px; border-radius: 14px; background: var(--surface); border-left: 6px solid var(--gold-line); box-shadow: 0 0 0 1px var(--line); }
   .peak .n { flex: none; font-size: clamp(34px, 9vw, 44px); font-weight: 800; line-height: 1; color: var(--teal); font-variant-numeric: tabular-nums; }
   .peak .n small { font-size: .45em; }
-  .peak p { margin: 0; font-size: 16px; line-height: 1.75; }
+  .peak p { margin: 0; font-size: 16px; line-height: 1.75; text-wrap: balance; }
+  @media (max-width: 479.98px) {
+    .peak { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
 
   /* trust (dark band) */
   .dark { background: var(--teal); color: var(--on-dark); }
@@ -170,7 +221,7 @@
   .dark .lead { color: var(--on-dark-2); }
   .checks { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 12px; }
   .checks li { padding: 18px; border-radius: 14px; background: var(--teal-2); }
-  .checks b { display: block; margin-bottom: 4px; color: var(--gold); font-size: 18px; line-height: 1.5; font-feature-settings: "palt"; word-break: auto-phrase; }
+  .checks b { display: block; margin-bottom: 4px; color: var(--on-dark); font-size: 18px; line-height: 1.5; font-feature-settings: "palt"; word-break: auto-phrase; }
   .checks span { display: block; font-size: 16px; line-height: 1.75; color: var(--on-dark-2); }
   .rules-title { margin: 40px 0 6px; font-size: clamp(19px, 5vw, 23px); color: var(--on-dark); }
   .rules { list-style: none; margin: 0; padding: 0; max-width: 52em; }
@@ -191,7 +242,7 @@
   .comment { margin: 0; padding: 24px 22px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
   .comment p { margin: 0 0 14px; font-size: 16px; line-height: 1.9; }
   .comment footer { font-size: 14px; line-height: 1.7; color: var(--muted); }
-  .history { list-style: none; margin: 20px 0 18px; padding: 0; border-left: 4px solid var(--gold); }
+  .history { list-style: none; margin: 20px 0 18px; padding: 0; border-left: 4px solid var(--gold-line); }
   .history li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 10px; padding: 8px 0 8px 16px; font-size: 16px; line-height: 1.7; word-break: auto-phrase; }
   .history li + li { border-top: 1px solid var(--line); }
   .history .yr { white-space: nowrap; font-weight: 800; color: var(--teal); font-variant-numeric: tabular-nums; }
@@ -202,26 +253,32 @@
   .cta-row p { margin: 0; font-size: 16px; line-height: 1.65; font-weight: 600; color: var(--ink); }
 
   /* roles */
-  .roles { display: grid; gap: 14px; margin-top: 8px; }
-  .role { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
-  .role h3 { margin: 0; padding: 14px 18px; font-size: 18px; background: var(--teal-soft); color: var(--teal); }
-  .role.ours h3 { background: var(--teal); color: var(--on-dark); }
-  .role ul { list-style: none; margin: 0; padding: 4px 18px 8px; }
-  .role li { position: relative; padding: 12px 0 12px 20px; font-size: 16px; line-height: 1.75; }
-  .role li + li { border-top: 1px solid var(--line); }
-  .role li::before { content: ""; position: absolute; left: 2px; top: 22px; width: 8px; height: 8px; border-radius: 50%; background: var(--teal-2); }
+  /* phones: each phase is a card, each side is labelled; from 720px it is a plain three-column table */
+  .rtable { width: 100%; margin-top: 8px; border-collapse: separate; border-spacing: 0; font-size: 16px; line-height: 1.75; }
+  .rtable thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .rtable, .rtable tbody, .rtable tr, .rtable th, .rtable td { display: block; }
+  .rtable tbody tr { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+  .rtable tbody tr + tr { margin-top: 14px; }
+  .rtable tbody th { padding: 10px 18px; background: var(--teal); color: var(--on-dark); font-size: 17px; text-align: left; }
+  .rtable td { padding: 12px 18px 6px; }
+  .rtable td + td { border-top: 1px solid var(--line); }
+  .rtable td::before { content: attr(data-label); display: inline-block; margin-bottom: 2px; padding: 0 8px; border-radius: 4px; background: var(--teal-soft); color: var(--teal); font-size: 14px; font-weight: 700; line-height: 1.8; }
+  .rtable td.ours::before { background: #FBF1D3; }
+  .rtable ul { list-style: none; margin: 0; padding: 0; }
+  .rtable li { position: relative; padding: 6px 0 6px 18px; }
+  .rtable li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 7px; height: 7px; border-radius: 50%; background: var(--teal-2); }
 
   /* flow */
   .flow { list-style: none; margin: 8px 0 0; padding: 0; max-width: 46em; }
   .flow li { position: relative; padding: 0 0 22px 36px; }
   .flow li::before { content: ""; position: absolute; left: 4px; top: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface); border: 4px solid var(--teal); }
-  .flow li::after { content: ""; position: absolute; left: 11px; top: 27px; bottom: 3px; width: 4px; border-radius: 2px; background: #C9D3D0; }
+  .flow li::after { content: ""; position: absolute; left: 11px; top: 27px; bottom: 3px; width: 4px; border-radius: 2px; background: #C6D5D7; }
   .flow li:last-child { padding-bottom: 0; }
   .flow li:last-child::after { display: none; }
   .flow .when { display: block; font-size: 17px; font-weight: 800; line-height: 1.6; color: var(--teal); }
   .flow .what { display: block; font-size: 16px; line-height: 1.75; }
   .flow-note { margin: 22px 0 0; font-size: 16px; }
-  .timing { margin-top: 14px; padding: 20px; border-radius: 14px; background: var(--gold-soft); border-left: 6px solid var(--gold); }
+  .timing { margin-top: 14px; padding: 20px; border-radius: 14px; background: var(--surface); border-left: 6px solid var(--gold-line); box-shadow: 0 0 0 1px var(--line); }
   .timing h3 { margin: 0 0 4px; font-size: 17px; color: var(--teal); }
   .timing p { margin: 0; font-size: 16px; }
   .timing .cta-row { margin-top: 16px; }
@@ -241,6 +298,12 @@
   .qa[open] summary { border-radius: 14px 14px 0 0; }
   .qa .a { padding: 4px 18px 18px; }
   .qa .a p { margin: 0; font-size: 16px; line-height: 1.85; }
+  .qa .a p + p, .qa .a ul + p { margin-top: 8px; }
+  .qa .a ul { margin: 8px 0 0; padding: 0; list-style: none; }
+  .qa .a li { position: relative; padding: 6px 0 6px 18px; font-size: 16px; line-height: 1.8; }
+  .qa .a li + li { border-top: 1px solid var(--line); }
+  .qa .a li::before { content: ""; position: absolute; left: 2px; top: 18px; width: 7px; height: 7px; border-radius: 50%; background: var(--teal-2); }
+  .qa .a li b { display: block; font-size: 14px; color: var(--teal); }
 
   /* contact: a full-width teal band on phones, a rounded card from 720px */
   .contact { background: var(--teal); }
@@ -263,7 +326,7 @@
   .addr .label { display: block; font-size: 16px; color: var(--muted); word-break: auto-phrase; }
   .addr .mail-text { display: block; margin: 2px 0; font-size: clamp(16px, 5vw, 20px); font-weight: 800; color: var(--teal); letter-spacing: .01em; white-space: nowrap; overflow-wrap: normal; -webkit-user-select: all; user-select: all; }
   .addr .who { display: block; font-size: 14px; color: var(--muted); }
-  .manual { margin: 16px 0 0; padding: 14px 14px 12px; border: 1px dashed #9DB5B1; border-radius: 12px; }
+  .manual { margin: 16px 0 0; padding: 14px 14px 12px; border: 1px dashed #9AB4B8; border-radius: 12px; }
   .cta .mailcard .manual-h { margin: 0 0 8px; font-size: 14px; line-height: 1.6; color: var(--muted); }
   .manual dl { margin: 0; display: grid; gap: 6px; }
   .manual dl div { display: block; }
@@ -274,7 +337,7 @@
   .hero-note a { color: var(--gold); font-weight: 700; }
   .cta .mailcard a:focus-visible { outline-color: var(--teal-2); }
   .guide-link { display: flex; gap: 14px; align-items: center; margin-top: 18px; padding: 12px 14px; border-radius: 14px; background: var(--teal-soft); color: var(--ink); text-decoration: none; }
-  .guide-link:hover { background: #D5E4E1; }
+  .guide-link:hover { background: #DAE9EB; }
   .guide-link .pdf, .reports .pdf { flex: none; width: 44px; height: 52px; border-radius: 6px; display: grid; place-items: center; background: var(--teal); color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: .04em; }
   .guide-link small { display: block; font-size: 14px; line-height: 1.5; color: var(--muted); word-break: auto-phrase; }
   .guide-link b { display: block; font-size: 16px; line-height: 1.5; color: var(--teal); font-feature-settings: "palt"; word-break: auto-phrase; }
@@ -286,14 +349,14 @@
   .reports a:hover { border-color: var(--teal-2); }
   .reports b { display: block; min-width: 0; font-size: 16px; line-height: 1.5; color: var(--teal); word-break: auto-phrase; font-feature-settings: "palt"; }
   .reports small { display: block; margin-top: 2px; font-size: 14px; line-height: 1.5; color: var(--muted); }
-  .reports .guide a { background: var(--gold-soft); border-color: #EBD9A0; }
+  .reports .guide a { background: var(--gold-soft); border-color: #EBDAA8; }
   .next { margin-top: 28px; }
   .next h3 { margin: 0 0 8px; font-size: 17px; color: var(--teal); }
   .next p { margin: 0 0 6px; font-size: 16px; }
   .next ul { margin: 0; padding-left: 1.2em; font-size: 16px; line-height: 1.85; }
 
   /* company */
-  .vision { margin: 0 0 20px; font-size: clamp(20px, 5.4vw, 26px); font-weight: 800; color: var(--teal); line-height: 1.5; font-feature-settings: "palt"; }
+  .company-h { font-size: clamp(20px, 5.2vw, 24px); margin-bottom: 12px; }
   .company { max-width: 720px; margin: 0; border-top: 1px solid var(--line); }
   .company div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 16px; line-height: 1.7; }
   .company dt { color: var(--muted); font-weight: 600; font-size: 14px; }
@@ -309,7 +372,7 @@
   .site-footer .copy { margin-top: 8px; color: var(--on-dark); }
 
   /* fixed band for phones */
-  .dock { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; padding: 8px max(var(--gutter), env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(var(--gutter), env(safe-area-inset-left)); background: rgba(15, 61, 69, .97); box-shadow: 0 -6px 18px rgba(15, 41, 46, .2); }
+  .dock { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; padding: 8px max(var(--gutter), env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(var(--gutter), env(safe-area-inset-left)); background: rgba(15, 61, 69, .97); box-shadow: 0 -6px 18px rgba(15, 41, 46, .16); }
   .dock .btn { display: flex; width: 100%; max-width: 520px; min-height: 48px; margin: 0 auto; padding: 8px 20px; font-size: 16px; }
   @supports (animation-timeline: scroll()) {
     @media (max-width: 719.98px) and (prefers-reduced-motion: no-preference) {
@@ -331,13 +394,33 @@
     .menu { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .menu li { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 16px; }
     .media { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .venues { grid-template-columns: 1fr 1fr; gap: 20px; }
     .voices { grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .checks { grid-template-columns: repeat(6, 1fr); gap: 16px; }
     .checks li { grid-column: span 2; }
     .checks li.wide { grid-column: 1 / -1; }
     .cta-row .btn { flex: 0 0 auto; }
-    .roles { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .rtable { display: table; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+    .rtable thead { position: static; width: auto; height: auto; overflow: visible; clip: auto; display: table-header-group; }
+    .rtable tbody { display: table-row-group; }
+    .rtable tr, .rtable tbody tr { display: table-row; border: 0; border-radius: 0; }
+    .rtable th, .rtable td { display: table-cell; vertical-align: top; }
+    .rtable thead th { padding: 14px 18px; background: var(--teal-soft); color: var(--teal); font-size: 17px; text-align: left; }
+    .rtable thead th.ours { background: var(--teal); color: var(--on-dark); }
+    .rtable thead td { width: 9em; background: var(--teal-soft); }
+    .rtable tbody th { width: 9em; white-space: nowrap; padding: 16px 18px; background: var(--bg-alt); color: var(--teal); border-top: 1px solid var(--line); }
+    .rtable td { padding: 10px 18px; border-top: 1px solid var(--line); }
+    .rtable td + td { border-left: 1px solid var(--line); }
+    .rtable td::before { display: none; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
+    .flow li { padding: 36px 20px 0 0; }
+    .flow li::before { left: 0; top: 0; }
+    .flow li::after { left: 26px; right: 4px; top: 9px; bottom: auto; width: auto; height: 4px; }
+    .charts.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .charts .chart { max-width: none; }
+    .vtable thead td { width: 9em; }
+    .vtable tbody th, .vtable tbody td { padding: 12px 16px; }
+    .vtable thead th { padding: 14px 16px; }
+    .chart { padding: 22px 22px 18px; }
     .qa .a { padding: 2px 46px 20px 58px; }
     .contact { background: var(--bg-alt); }
     .cta { padding: 44px 40px; border-radius: 20px; background: var(--teal); }
@@ -366,7 +449,7 @@
     section { padding: 28px 0; }
     .hero { padding-bottom: 28px; }
     details.qa::details-content { content-visibility: visible; display: block; }
-    .qa, .venue, .role, .comment, .mailcard, .peak, .timing, .requests, .stats li, .steps li, .menu li, .checks li, .voices li, .reports li, .flow li, .media figure, .company div { break-inside: avoid; }
+    .qa, .vtable tr, .rtable tr, .chart, .comment, .mailcard, .peak, .timing, .requests, .stats li, .steps li, .menu li, .checks li, .voices li, .reports li, .flow li, .media figure, .company div { break-inside: avoid; }
     h2, h3, .eyebrow, .faq-group, summary { break-after: avoid; }
     .media { grid-template-columns: repeat(2, 1fr); max-width: 110mm; }
     a.btn[href^="mailto:"]::after { content: "　t.nakajo@tea-break.co.jp"; font-weight: 700; }
@@ -391,21 +474,21 @@
     </div>
     <div class="hero-grid">
       <div>
-        <p class="kicker">2026年10月の実績</p>
-        <h1><span class="nw">文化祭・学園祭の</span><span class="nw">会計に、</span><span class="nw">LINEを活用。</span></h1>
+        <p class="kicker"><span class="nw">2026年10月</span>の実績</p>
+        <h1><span class="nw">文化祭・学園祭の</span><wbr><span class="nw">会計に、</span><wbr><span class="nw">LINEを活用。</span></h1>
         <div class="rule" aria-hidden="true"></div>
         <p class="hero-sub">明聖高等学校の校内通貨「MeiPay」</p>
-        <p class="hero-lead">会員証もレジも、LINEから使えます。本校と中野キャンパスの学園祭、3日間の記録です。</p>
+        <p class="hero-lead">会員証もレジも、LINEから使えます。本校と中野キャンパスの学園祭、<span class="nw">3日間</span>の記録です。</p>
         <ul class="proof" aria-label="3日間の結果">
-          <li><b>7,989<small>件</small></b><span>3日間の支払い</span></li>
-          <li><b class="word">止まらず</b><span>決済は3日間とも</span></li>
+          <li><b>7,989<small>件</small></b><span><span class="nw">3日間</span>の支払い</span></li>
+          <li><b class="word">止まらず</b><span>決済は<span class="nw">3日間</span>とも</span></li>
           <li><b>0</b><span>残高の照合でのずれ</span></li>
         </ul>
         <div class="hero-cta">
           <a class="btn" href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AE%E4%BC%9A%E8%A8%88%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6&body=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BETeaBreak%E3%80%80%E4%BB%B2%E6%9D%A1%E6%A7%98%0D%0A%0D%0AMeiPay%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%80%81%E7%9B%B8%E8%AB%87%E3%81%95%E3%81%9B%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0D%0A%0D%0A%E5%AD%A6%E6%A0%A1%E5%90%8D%EF%BC%9A%0D%0A%E8%A1%8C%E4%BA%8B%E3%81%AE%E6%99%82%E6%9C%9F%EF%BC%9A%0D%0A%E7%94%9F%E5%BE%92%E3%81%A8%E6%9D%A5%E5%A0%B4%E8%80%85%E3%81%AE%E3%81%8A%E3%81%8A%E3%82%88%E3%81%9D%E3%81%AE%E4%BA%BA%E6%95%B0%EF%BC%9A%0D%0A%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E4%B8%80%E8%A8%80%E3%81%A7%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%EF%BC%9A%0D%0A%0D%0A%E9%9B%BB%E8%A9%B1%E3%81%A7%E3%81%AE%E9%80%A3%E7%B5%A1%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%A0%E3%81%91%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%EF%BC%9A%0D%0A%E3%81%94%E9%83%BD%E5%90%88%E3%81%AE%E3%82%88%E3%81%84%E6%99%82%E9%96%93%E5%B8%AF%EF%BC%9A%0D%0A"><svg class="ic-svg" aria-hidden="true"><use href="#i-mail"/></svg>メールで相談する</a>
           <a class="btn btn-ghost" href="#faq">よくある質問</a>
         </div>
-        <p class="hero-note">ご相談とお見積もりは無料。2営業日以内にお返事します。<br>メールが開かないときは、<a class="nw" href="#contact-mail">宛先と件名はこちら</a>。</p>
+        <p class="hero-note">ご相談とお見積もりは無料。<span class="nw">2営業日</span>以内にお返事します。<br>メールが開かないときは、<a class="nw" href="#contact-mail">宛先と件名はこちら</a>。</p>
       </div>
       <figure class="hero-fig">
         <img src="img/hero.jpg" width="1200" height="914" alt="模擬店の会計でスマートフォンを差し出す手元と、手に持ったスマートフォンに出した会員証とメニュー" fetchpriority="high">
@@ -419,14 +502,25 @@
 <section id="numbers" aria-labelledby="numbers-h">
   <div class="wrap">
     <p class="eyebrow">3日間の結果</p>
-    <h2 id="numbers-h"><span class="nw">決済は止まらず、</span><span class="nw">残高の照合でずれ0</span></h2>
-    <p class="lead measure">株式会社TeaBreakは、学校法人花沢学園 明聖高等学校の学園祭で使う、LINEを活用した校内通貨「MeiPay（メイペイ）」を開発し、2026年10月の本番で運用しました。会場は、本校の「2026明聖祭」と、中野キャンパスの「第10回学園祭」。</p>
+    <h2 id="numbers-h"><span class="nw">決済は止まらず、</span><wbr><span class="nw">残高の照合でずれ0</span></h2>
+    <p class="lead measure">株式会社TeaBreakは、学校法人花沢学園 明聖高等学校の学園祭で使う、LINEを活用した校内通貨「MeiPay（メイペイ）」を開発し、<span class="nw">2026年10月</span>の本番で運用しました。会場は、本校の「<span class="nw">2026明聖祭</span>」と、中野キャンパスの「<span class="nw">第10回</span>学園祭」。</p>
     <ul class="stats">
-      <li class="hl"><span class="stat-num">7,989<small>件</small></span><span class="stat-label">3日間の支払い</span></li>
-      <li><span class="stat-num word">止まらず</span><span class="stat-label"><span class="nw">決済は</span><span class="nw">3日間とも</span></span></li>
-      <li><span class="stat-num">0</span><span class="stat-label">残高のずれ<br><span class="nw">5分おきの</span><span class="nw">照合で</span></span></li>
+      <li class="hl"><span class="stat-num">7,989<small>件</small></span><span class="stat-label"><span class="nw">3日間</span>の支払い</span></li>
+      <li><span class="stat-num word">止まらず</span><span class="stat-label"><span class="nw">決済は</span><wbr><span class="nw">3日間とも</span></span></li>
+      <li><span class="stat-num">0</span><span class="stat-label">残高のずれ<br><span class="nw">5分おきの</span><wbr><span class="nw">照合で</span></span></li>
       <li><span class="stat-num">2<small>会場</small></span><span class="stat-label">本校と<br><span class="nw">中野キャンパス</span></span></li>
     </ul>
+    <figure class="chart" aria-labelledby="f1-t">
+      <figcaption><span class="ttl" id="f1-t">日ごとの支払いの件数</span><span class="unit"><span class="nw">3日間</span>の合計は<span class="nw">7,989件</span>です。</span></figcaption>
+      <table class="bars">
+        <thead class="sr"><tr><th scope="col">日</th><th scope="col">支払いの件数</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" class="wrap"><span class="nw">10月23日（金）</span><small>本校・在校生のみの日</small></th><td><div class="br" style="--r:0.4177"><span class="b"></span><span class="v">1,660件</span></div></td></tr>
+          <tr><th scope="row" class="wrap"><span class="nw">10月24日（土）</span><small>本校・一般公開の日</small></th><td><div class="br" style="--r:1"><span class="b"></span><span class="v">3,974件</span></div></td></tr>
+          <tr><th scope="row" class="wrap"><span class="nw">10月25日（日）</span><small>中野キャンパス</small></th><td><div class="br" style="--r:0.5926"><span class="b"></span><span class="v">2,355件</span></div></td></tr>
+        </tbody>
+      </table>
+    </figure>
   </div>
 </section>
 
@@ -454,7 +548,7 @@
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span><b>初回の付与は自動。</b>在校生・中学生・先生など、区分ごとに決めた額が入ります。</span></li>
     </ul>
 
-    <h3 class="menu-title">メニューは5つ</h3>
+    <h3 class="menu-title">メニューは<span class="nw">5つ</span></h3>
     <ul class="menu">
       <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><rect x="6.5" y="8.5" width="5" height="5"/><path d="M14.5 9.5h3M14.5 13h2.5"/></svg></span><div><b>会員証</b><span>QRコードと残高</span></div></li>
       <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.8-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg></span><div><b>フロアマップ</b><span>校内の案内図</span></div></li>
@@ -462,6 +556,19 @@
       <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-6 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2.6"/></svg></span><div><b>委員長に質問</b><span class="kp">AIが<wbr>実行委員長<wbr>として、<wbr>出し物などの<wbr>質問に答える</span></div></li>
       <li><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.5h17v7.5h-17z"/><path d="M8 12.5V4.5h8v8"/><path d="M10.5 8h3"/></svg></span><div><b>投票ページ</b><span>クラスへの投票フォーム</span></div></li>
     </ul>
+    <figure class="chart" aria-labelledby="f4-t">
+      <figcaption><span class="ttl" id="f4-t">メニューの利用回数</span><span class="unit">本校の<span class="nw">2日間</span>。<span class="nw">いちばん使われたのは</span><wbr><span class="nw">「会員証」です。</span></span></figcaption>
+      <table class="bars">
+        <thead class="sr"><tr><th scope="col">メニュー</th><th scope="col">利用回数</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" class="wrap">会員証</th><td><div class="br" style="--r:1"><span class="b"></span><span class="v">6,498回</span></div></td></tr>
+          <tr><th scope="row" class="wrap">フロアマップ・<span class="nw">催事CM</span></th><td><div class="br" style="--r:0.2573"><span class="b"></span><span class="v">1,672回</span></div></td></tr>
+          <tr><th scope="row" class="wrap">投票ページ</th><td><div class="br" style="--r:0.1397"><span class="b"></span><span class="v">908回</span></div></td></tr>
+          <tr><th scope="row" class="wrap">委員長に質問</th><td><div class="br" style="--r:0.0432"><span class="b"></span><span class="v">281回</span></div></td></tr>
+        </tbody>
+      </table>
+      <p class="foot">フロアマップと催事CMは、同じボタンから開くため合わせた回数です。委員長には、<span class="nw">218件</span>の質問が届きました。</p>
+    </figure>
   </div>
 </section>
 
@@ -472,7 +579,7 @@
     <div class="media">
       <figure>
         <div class="frame"><img src="img/photo-register.jpg" width="800" height="1422" loading="lazy" alt="模擬店のカウンター越しに、お客さんがスマートフォンの会員証を差し出す手元"></div>
-        <figcaption>模擬店の会計。お客さんの会員証を、レジ係のスマートフォンで読み取ります。</figcaption>
+        <figcaption><span class="nw">模擬店の会計。</span><wbr><span class="nw">お客さんの</span><wbr><span class="nw">会員証を、</span><wbr><span class="nw">レジ係の</span><wbr><span class="nw">スマートフォンで</span><wbr><span class="nw">読み取ります。</span></figcaption>
       </figure>
       <figure>
         <div class="frame">
@@ -480,11 +587,11 @@
             <source src="video/register-scan.mp4" type="video/mp4">
           </video>
         </div>
-        <figcaption><span class="tag">動画18秒</span>模擬店のレジで、机に置いた会員証を読み取る様子。</figcaption>
+        <figcaption><span class="tag">動画18秒</span><wbr><span class="nw">模擬店の</span><wbr><span class="nw">レジで、</span><wbr><span class="nw">机に置いた</span><wbr><span class="nw">会員証を</span><wbr><span class="nw">読み取る様子。</span></figcaption>
       </figure>
       <figure>
         <div class="frame"><img src="img/photo-card-hand.jpg" width="720" height="1280" loading="lazy" alt="手に持ったスマートフォンに、会員証と5つのメニューが出ている様子"></div>
-        <figcaption>スマートフォンに出した会員証とメニュー。QRコードはぼかしています。</figcaption>
+        <figcaption><span class="nw">スマートフォンに</span><wbr><span class="nw">出した</span><wbr><span class="nw">会員証と</span><wbr><span class="nw">メニュー。</span></figcaption>
       </figure>
       <figure>
         <div class="frame">
@@ -492,54 +599,89 @@
             <source src="video/show-card.mp4" type="video/mp4">
           </video>
         </div>
-        <figcaption><span class="tag">動画11秒</span>会員証を出して見せる様子。</figcaption>
+        <figcaption><span class="tag">動画11秒</span><wbr><span class="nw">会員証を</span><wbr><span class="nw">出して</span><wbr><span class="nw">見せる様子。</span></figcaption>
       </figure>
     </div>
-    <p class="note" style="margin-top:16px">写真と動画は、学校の許可を得て掲載しています。動画は音なしです。お顔と会員証のQRコードは、ぼかしています。</p>
+    <p class="note" style="margin-top:16px">写真と動画は、学校の許可を得て掲載しています。動画は音なしです。お顔は、ぼかしています。</p>
   </div>
 </section>
 
 <section id="venues" class="alt" aria-labelledby="venues-h">
   <div class="wrap">
     <p class="eyebrow">会場ごとの数字</p>
-    <h2 id="venues-h">2会場・3日間の記録</h2>
-    <div class="venues">
-      <div class="venue">
-        <h3><small>本校</small>2026明聖祭</h3>
-        <table>
-          <tr><th scope="row">日程</th><td>10月23日（金）<span class="sub">在校生のみの日</span>10月24日（土）<span class="sub">一般公開</span></td></tr>
-          <tr><th scope="row">支払いの件数</th><td>5,634件</td></tr>
-          <tr><th scope="row">支払いの金額</th><td>1,832,930 MeiPay</td></tr>
-          <tr><th scope="row">支払った人</th><td>1,135人</td></tr>
-          <tr><th scope="row">会員</th><td>1,266人</td></tr>
-          <tr><th scope="row">レジ</th><td>15か所</td></tr>
-          <tr><th scope="row">残高の照合</th><td>266回、ずれ0<span class="sub">5分おき</span></td></tr>
-          <tr><th scope="row">決済</th><td>2日間とも止まらず</td></tr>
-        </table>
-      </div>
-      <div class="venue">
-        <h3><small>中野キャンパス</small>第10回学園祭</h3>
-        <table>
-          <tr><th scope="row">日程</th><td>10月25日（日）</td></tr>
-          <tr><th scope="row">支払いの件数</th><td>2,355件</td></tr>
-          <tr><th scope="row">支払いの金額</th><td>622,000 MeiPay</td></tr>
-          <tr><th scope="row">支払った人</th><td>529人</td></tr>
-          <tr><th scope="row">会員</th><td>620人<span class="sub">うち当日登録229人</span></td></tr>
-          <tr><th scope="row">レジ</th><td>9か所</td></tr>
-          <tr><th scope="row">残高の照合</th><td>109回、ずれ0<span class="sub">5分おき</span></td></tr>
-          <tr><th scope="row">決済</th><td>1日を通して止まらず</td></tr>
-        </table>
-      </div>
-    </div>
-    <div class="peak">
-      <div class="n">499<small>件</small></div>
-      <p>いちばん混んだのは、本校の一般公開日の昼。12時7分からの30分に、499件の支払いが集まりました。</p>
-    </div>
+    <h2 id="venues-h"><span class="nw">2会場</span>・<span class="nw">3日間</span>の記録</h2>
+    <table class="vtable" aria-labelledby="venues-h">
+      <thead>
+        <tr><td></td><th scope="col"><small>本校</small>2026明聖祭</th><th scope="col"><small>中野キャンパス</small>第10回学園祭</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">日程</th><td><span class="day">10月23日（金）</span><span class="sub">在校生のみの日</span><span class="day">10月24日（土）</span><span class="sub">一般公開</span></td><td><span class="day">10月25日（日）</span></td></tr>
+        <tr><th scope="row">支払いの件数</th><td>5,634件</td><td>2,355件</td></tr>
+        <tr><th scope="row">支払いの金額</th><td>1,832,930 <span class="u">MeiPay</span></td><td>622,000 <span class="u">MeiPay</span></td></tr>
+        <tr><th scope="row">支払った人</th><td>1,135人</td><td>529人</td></tr>
+        <tr><th scope="row">会員</th><td>1,266人</td><td>620人<span class="sub">うち当日登録229人</span></td></tr>
+        <tr><th scope="row">レジ</th><td>15か所</td><td>9か所</td></tr>
+        <tr><th scope="row">残高の照合</th><td>266回、<span class="nw2">ずれ0</span><span class="sub">5分おき</span></td><td>109回、<span class="nw2">ずれ0</span><span class="sub">5分おき</span></td></tr>
+        <tr><th scope="row">決済</th><td>2日間とも止まらず</td><td>1日を通して止まらず</td></tr>
+      </tbody>
+    </table>
     <ul class="notes">
       <li>※MeiPayは学園祭の中だけで使う校内通貨の単位で、円ではありません。</li>
-      <li>※会員の数は、登録の途中の方と退会した方を含みます。</li>
-      <li>※数字は閉場後に記録を読み取って数えたものです（本校は10月24日夜、中野キャンパスは10月25日17時すぎ）。</li>
+      <li>※本校の支払った人<span class="nw">1,135人</span>は、両日とも払った方を<span class="nw">1人</span>と数えています。</li>
+      <li>※会員の数は、登録の途中の方と退会した方を<span class="nw">含みます。</span></li>
+      <li>※数字は閉場後に記録を読み取って数えたものです（<span class="nw">本校は</span><wbr><span class="nw">10月24日夜、</span>中野キャンパスは<span class="nw">10月25日17時すぎ</span>）。</li>
     </ul>
+
+    <h3 class="viz-h">時間帯ごとの支払い</h3>
+    <div class="peak">
+      <div class="n">499<small>件</small></div>
+      <p>いちばん混んだのは、本校の<span class="nw">一般公開の日、</span><wbr><span class="nw">10月24日の昼。</span><wbr><span class="nw">12時7分からの</span><wbr><span class="nw">30分に、</span><wbr><span class="nw">499件の</span>支払いが<span class="nw">集まりました。</span></p>
+    </div>
+    <div class="charts two">
+      <figure class="chart" aria-labelledby="f2-t">
+        <figcaption><span class="ttl" id="f2-t">本校　<span class="nw">1時間</span>ごとの支払いの件数</span><span class="unit"><span class="nw">15か所</span>のレジの合計です。</span></figcaption>
+        <ul class="legend" aria-hidden="true">
+          <li><i class="light"></i>10月23日（金）在校生のみの日</li>
+          <li><i></i>10月24日（土）一般公開の日</li>
+        </ul>
+        <table class="bars pair">
+          <thead class="sr"><tr><th scope="col">時間</th><th scope="col">上が10月23日（金）在校生のみの日、下が10月24日（土）一般公開の日の件数</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">9時台</th><td><div class="br light" style="--r:0"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>0件</span></div><div class="br" style="--r:0.3491"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>310件</span></div></td></tr>
+            <tr><th scope="row">10時台</th><td><div class="br light" style="--r:0.5428"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>482件</span></div><div class="br" style="--r:0.9099"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>808件</span></div></td></tr>
+            <tr><th scope="row">11時台</th><td><div class="br light" style="--r:0.8581"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>762件</span></div><div class="br" style="--r:0.866"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>769件</span></div></td></tr>
+            <tr><th scope="row">12時台</th><td><div class="br light" style="--r:0.4673"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>415件</span></div><div class="br" style="--r:1"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>888件</span></div></td></tr>
+            <tr><th scope="row">13時台</th><td><div class="br light" style="--r:0"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>0件</span></div><div class="br" style="--r:0.9155"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>813件</span></div></td></tr>
+            <tr><th scope="row">14時台</th><td><div class="br light" style="--r:0"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>0件</span></div><div class="br" style="--r:0.4347"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>386件</span></div></td></tr>
+            <tr><th scope="row">15時台</th><td><div class="br light" style="--r:0.0011"><span class="b"></span><span class="v"><span class="sr">10月23日 </span>1件</span></div><div class="br" style="--r:0"><span class="b"></span><span class="v"><span class="sr">10月24日 </span>0件</span></div></td></tr>
+          </tbody>
+        </table>
+        <p class="foot">決済の受付は両日とも<span class="nw">9時〜17時で、</span><wbr><span class="nw">16時台・</span><wbr><span class="nw">17時台は</span><wbr><span class="nw">0件です。</span><wbr><span class="nw">23日の</span>支払いは<span class="nw">12時45分</span>ごろまでに落ち着き、<span class="nw">13時台・</span><wbr><span class="nw">14時台は</span><wbr><span class="nw">0件でした。</span></p>
+      </figure>
+      <figure class="chart" aria-labelledby="f3-t">
+        <figcaption><span class="ttl" id="f3-t">中野キャンパス　<span class="nw">30分</span>ごとの支払いの件数</span><span class="unit"><span class="nw">10月25日（日）</span>。全レジの合計です。</span></figcaption>
+        <table class="bars peak-at">
+          <thead class="sr"><tr><th scope="col">30分の区切り</th><th scope="col">支払いの件数</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">9:00〜</th><td><div class="br" style="--r:0.0035"><span class="b"></span><span class="v">1件</span></div></td></tr>
+            <tr><th scope="row">9:30〜</th><td><div class="br" style="--r:0"><span class="b"></span><span class="v">0件</span></div></td></tr>
+            <tr><th scope="row">10:00〜</th><td><div class="br" style="--r:0.5889"><span class="b"></span><span class="v">169件</span></div></td></tr>
+            <tr><th scope="row">10:30〜</th><td><div class="br" style="--r:0.6516"><span class="b"></span><span class="v">187件</span></div></td></tr>
+            <tr><th scope="row">11:00〜</th><td><div class="br" style="--r:0.8676"><span class="b"></span><span class="v">249件</span></div></td></tr>
+            <tr><th scope="row">11:30〜</th><td><div class="br" style="--r:0.9512"><span class="b"></span><span class="v">273件</span></div></td></tr>
+            <tr class="top"><th scope="row">12:00〜</th><td><div class="br" style="--r:1"><span class="b"></span><span class="v">287件</span></div></td></tr>
+            <tr><th scope="row">12:30〜</th><td><div class="br" style="--r:0.8293"><span class="b"></span><span class="v">238件</span></div></td></tr>
+            <tr><th scope="row">13:00〜</th><td><div class="br" style="--r:0.8537"><span class="b"></span><span class="v">245件</span></div></td></tr>
+            <tr><th scope="row">13:30〜</th><td><div class="br" style="--r:0.8153"><span class="b"></span><span class="v">234件</span></div></td></tr>
+            <tr><th scope="row">14:00〜</th><td><div class="br" style="--r:0.6899"><span class="b"></span><span class="v">198件</span></div></td></tr>
+            <tr><th scope="row">14:30〜</th><td><div class="br" style="--r:0.5714"><span class="b"></span><span class="v">164件</span></div></td></tr>
+            <tr><th scope="row">15:00〜</th><td><div class="br" style="--r:0.3833"><span class="b"></span><span class="v">110件</span></div></td></tr>
+            <tr><th scope="row">15:30〜</th><td><div class="br" style="--r:0"><span class="b"></span><span class="v">0件</span></div></td></tr>
+          </tbody>
+        </table>
+        <p class="foot">濃い色の棒が、いちばん多い12:00〜12:30の<span class="nw">287件</span>。<span class="nw">11時</span>から<span class="nw">14時</span>は、どの区切りも<span class="nw">230件</span>超え。15:30より後の支払いは<span class="nw">0件</span>です。棒の長さの目盛りは、本校の図とは違います。</p>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -549,10 +691,10 @@
     <h2 id="trust-h">お金の数字を、合わせ続ける</h2>
     <p class="lead">当日の点検と、もしものときの備え。</p>
     <ul class="checks">
-      <li><b>5分おきに照合、ずれ0</b><span>全員の残高を、取引の記録と突き合わせました。本校266回、中野キャンパス109回。残高と記録が食い違う「ずれ」は、一度も出ていません。</span></li>
+      <li><b><span class="nw">5分</span>おきに照合、ずれ0</b><span>全員の残高を、取引の記録と突き合わせました。本校<span class="nw">266回</span>、中野キャンパス<span class="nw">109回</span>。残高と記録が食い違う「ずれ」は、一度も出ていません。</span></li>
       <li><b>異常は運営にメールで届く</b><span>サーバーの異常や残高のずれがあれば、知らせが運営にメールで届く設定です。</span></li>
-      <li><b>過去7日に戻せる</b><span>誤ってデータを消しても、過去7日のうちの時点に戻せます。</span></li>
-      <li class="wide"><b>14,253回すべてに応答</b><span>中野キャンパスでは、LINEからの呼び出しにすべて応答。95%は0.29秒以内に返しました。</span></li>
+      <li><b>過去<span class="nw">7日</span>に戻せる</b><span>誤ってデータを消しても、過去<span class="nw">7日</span>のうちの時点に戻せます。</span></li>
+      <li class="wide"><b><span class="nw">14,253回</span>すべてに応答</b><span>中野キャンパスでは、LINEからの呼び出しにすべて応答。95%は<span class="nw">0.29秒</span>以内に返しました。</span></li>
     </ul>
     <h3 class="rules-title">会計の決まりも、仕組みの中に</h3>
     <ul class="rules">
@@ -560,7 +702,7 @@
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>チャージで受け取る現金は、学校の受付が管理します。TeaBreakがお金をお預かりすることはありません</span></li>
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>受付の現金は、チャージの記録と突き合わせて締められます</span></li>
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>打ち間違えた支払いは、受付で返金して直せます</span></li>
-      <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>レジごとの売上と件数は、管理シート（先生方が見られる表）に5分ごとに自動でまとまります</span></li>
+      <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>レジごとの売上と件数は、管理シート（先生方が見られる表）に<span class="nw">5分</span>ごとに自動でまとまります</span></li>
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お金の動きはすべて記録され、いつ、どのレジや担当が、いくら動かしたかを、あとから確かめられます</span></li>
     </ul>
   </div>
@@ -593,8 +735,8 @@
     <div class="year">
       <div>
         <p class="eyebrow">これまで</p>
-        <h2 id="story-h">担当して3年目</h2>
-        <p>代表の仲条は、2024年から明聖高等学校の学園祭で、LINEを活用したボットを担当しています。今年で3年目。</p>
+        <h2 id="story-h">担当して<span class="nw">3年目</span></h2>
+        <p>代表の仲条は、<span class="nw">2024年</span>から明聖高等学校の学園祭で、LINEを活用したボットを担当しています。今年で<span class="nw">3年目</span>。</p>
         <ul class="history">
           <li><span class="yr">2024年から</span><span>明聖高等学校（本校・中野キャンパス）</span></li>
           <li><span class="yr">2025年</span><span>福島県の郡山北工業高等学校<br>LINEを活用した「キタコバン」</span></li>
@@ -602,12 +744,12 @@
       </div>
       <div>
         <blockquote class="comment">
-          <p>「学園祭のお金は、生徒が準備してきた出し物の売上です。だから、残高と取引の記録が合っていることを、当日のうちに確かめ続けられる仕組みにしました。3日間、決済が止まらず、5分おきの照合でもずれが出なかったのは、明聖高等学校の先生方と生徒の皆さんが、練習の日から本番まで使いこなしてくださったおかげです。運用報告の公開版には、数字と一緒に、いただいた要望もそのまま載せました。文化祭の会計や案内を見直したい先生方の、判断の材料になればうれしいです。何も決まっていない段階でも、まずはお話を聞かせてください。」</p>
+          <p>「学園祭のお金は、生徒が準備してきた出し物の売上です。だから、残高と取引の記録が合っていることを、当日のうちに確かめ続けられる仕組みにしました。<span class="nw">3日間</span>、決済が止まらず、<span class="nw">5分</span>おきの照合でもずれが出なかったのは、明聖高等学校の先生方と生徒の皆さんが、練習の日から本番まで使いこなしてくださったおかげです。運用報告の公開版には、数字と一緒に、いただいた要望もそのまま載せました。文化祭の会計や案内を見直したい先生方の、判断の材料になればうれしいです。何も決まっていない段階でも、まずはお話を聞かせてください。」</p>
           <footer>株式会社TeaBreak<br>代表取締役　仲条 高幸</footer>
         </blockquote>
         <div class="cta-row">
           <a class="btn btn-dark" href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AE%E4%BC%9A%E8%A8%88%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6&body=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BETeaBreak%E3%80%80%E4%BB%B2%E6%9D%A1%E6%A7%98%0D%0A%0D%0AMeiPay%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%80%81%E7%9B%B8%E8%AB%87%E3%81%95%E3%81%9B%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0D%0A%0D%0A%E5%AD%A6%E6%A0%A1%E5%90%8D%EF%BC%9A%0D%0A%E8%A1%8C%E4%BA%8B%E3%81%AE%E6%99%82%E6%9C%9F%EF%BC%9A%0D%0A%E7%94%9F%E5%BE%92%E3%81%A8%E6%9D%A5%E5%A0%B4%E8%80%85%E3%81%AE%E3%81%8A%E3%81%8A%E3%82%88%E3%81%9D%E3%81%AE%E4%BA%BA%E6%95%B0%EF%BC%9A%0D%0A%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E4%B8%80%E8%A8%80%E3%81%A7%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%EF%BC%9A%0D%0A%0D%0A%E9%9B%BB%E8%A9%B1%E3%81%A7%E3%81%AE%E9%80%A3%E7%B5%A1%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%A0%E3%81%91%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%EF%BC%9A%0D%0A%E3%81%94%E9%83%BD%E5%90%88%E3%81%AE%E3%82%88%E3%81%84%E6%99%82%E9%96%93%E5%B8%AF%EF%BC%9A%0D%0A"><svg class="ic-svg" aria-hidden="true"><use href="#i-mail"/></svg>メールで相談する</a>
-          <p>ご相談とお見積もりは無料。2営業日以内にお返事します。</p>
+          <p>ご相談とお見積もりは無料。<span class="nw">2営業日</span>以内にお返事します。</p>
         </div>
       </div>
     </div>
@@ -618,27 +760,36 @@
   <div class="wrap">
     <p class="eyebrow">役割</p>
     <h2 id="roles-h">学校とTeaBreakの分担</h2>
-    <p class="measure">2026年の明聖高等学校での分け方です。新しい学校での分け方は、ご相談のうえで決めます。</p>
-    <div class="roles">
-      <div class="role">
-        <h3>学校でご用意いただくもの</h3>
-        <ul>
-          <li>受付に立つ先生や実行委員と、模擬店のレジ係</li>
-          <li>メニューのデザイン、催しの紹介動画、校内の案内図、投票のフォーム</li>
-          <li>保護者などへの登録のご案内</li>
-          <li>日時や金額などの設定。管理シートで先生方が書き換えられ、5〜6分ほどで反映されます</li>
-        </ul>
-      </div>
-      <div class="role ours">
-        <h3>TeaBreakが行うこと</h3>
-        <ul>
-          <li>ボットの開発と、学園祭用のLINE公式アカウント・管理シートの用意</li>
-          <li>練習の進め方をまとめた手順書</li>
-          <li>当日の見守り。5分おきの残高の照合と、異常の知らせ</li>
-          <li>当日のお問い合わせへのお返事と、終わったあとの運用報告</li>
-        </ul>
-      </div>
-    </div>
+    <p class="measure"><span class="nw">2026年</span>の明聖高等学校での分け方です。新しい学校での分け方は、ご相談のうえで決めます。</p>
+    <table class="rtable">
+      <thead>
+        <tr><td></td><th scope="col">学校でご用意いただくもの</th><th scope="col" class="ours">TeaBreakが行うこと</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">本番の前</th>
+          <td data-label="学校でご用意いただくもの"><ul>
+            <li>メニューのデザイン、催しの紹介動画、校内の案内図、投票のフォーム</li>
+            <li>保護者などへの登録のご案内</li>
+            <li>日時や金額などの設定。管理シートで先生方が書き換えられ、<span class="nw">5〜6分</span>ほどで反映されます</li>
+          </ul></td>
+          <td class="ours" data-label="TeaBreakが行うこと"><ul>
+            <li>ボットの開発と、学園祭用のLINE公式アカウント・管理シートの用意</li>
+            <li>練習の進め方をまとめた手順書</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <th scope="row">当日とそのあと</th>
+          <td data-label="学校でご用意いただくもの"><ul>
+            <li>受付に立つ先生や実行委員と、模擬店のレジ係</li>
+          </ul></td>
+          <td class="ours" data-label="TeaBreakが行うこと"><ul>
+            <li>当日の見守り。<span class="nw">5分</span>おきの残高の照合と、異常の知らせ</li>
+            <li>当日のお問い合わせへのお返事と、終わったあとの運用報告</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -646,14 +797,14 @@
   <div class="wrap">
     <p class="eyebrow">準備</p>
     <h2 id="flow-h">当日までの流れ</h2>
-    <p class="measure">2026年の中野キャンパスでの流れです。</p>
+    <p class="measure"><span class="nw">2026年</span>の中野キャンパスでの流れです。</p>
     <ol class="flow">
-      <li><span class="when">9月</span><span class="what">登録の受付を開始。保護者と中学3年生には、学校から登録用のQRコードを郵送</span></li>
+      <li><span class="when"><span class="nw">9月</span></span><span class="what">登録の受付を開始。保護者と中学<span class="nw">3年生</span>には、学校から登録用のQRコードを郵送</span></li>
       <li><span class="when">本番の前</span><span class="what">練習の日。練習の支払いには「テスト」の印が付き、本番の売上には入りません。練習で動いた残高は、あとで元に戻します</span></li>
-      <li><span class="when">10月25日</span><span class="what">本番。会員620人のうち229人は、当日の登録でした</span></li>
-      <li><span class="when">終わったあと</span><span class="what">運用報告を学校へ提出し、11月に要約を公開</span></li>
+      <li><span class="when"><span class="nw">10月25日</span></span><span class="what">本番。会員<span class="nw">620人</span>のうち<span class="nw">229人</span>は、当日の登録でした</span></li>
+      <li><span class="when">終わったあと</span><span class="what">運用報告を学校へ提出し、<span class="nw">11月</span>に要約を公開</span></li>
     </ol>
-    <p class="flow-note">担当して3年目の学校での流れです。</p>
+    <p class="flow-note">担当して<span class="nw">3年目</span>の学校での流れです。</p>
     <div class="timing">
       <h3>ご相談の時期</h3>
       <p>初めての学校は、日程が決まる前でも構いません。来年度の行事を考え始めたところで、まずはご相談ください。</p>
@@ -690,27 +841,27 @@
       </details>
       <details class="qa">
         <summary>本番の前に練習できますか？ レジ係は、どう決めますか？</summary>
-        <div class="a"><p>本番の前に、練習の時間を設けられます。練習中の支払いには「テスト」の印が付き、本番の売上には入りません。練習で動いた残高は、練習のあとに元に戻します。レジ係は、レジに置いたカードのQRを読み取って送信するだけで担当になれます。練習の日に担当になっておけば、本番の日はそのまま使えます。</p></div>
+        <div class="a"><p>本番の前に、練習の時間を設けられます。練習中の支払いには「テスト」の印が付き、本番の売上には入りません。練習で動いた残高は、練習のあとに元に戻します。レジ係は、レジに置いたカードのQRを読み取り、送信を<span class="nw">1回</span>押すと担当になれます。練習の日に担当になっておけば、本番の日はそのまま使えます。</p></div>
       </details>
 
       <h3 class="faq-group">お金と記録</h3>
       <details class="qa">
         <summary>模擬店ごとの売上は分かりますか？</summary>
-        <div class="a"><p>レジごとの売上と件数は、管理シートに5分ごとに自動でまとまります。練習の分は除き、返金は差し引いた数です。お金の動きはすべて記録され、いつ、どのレジや担当が、いくら動かしたかを、あとから確かめられます。</p></div>
+        <div class="a"><p>レジごとの売上と件数は、管理シートに<span class="nw">5分</span>ごとに自動でまとまります。練習の分は除き、返金は差し引いた数です。お金の動きはすべて記録され、いつ、どのレジや担当が、いくら動かしたかを、あとから確かめられます。</p></div>
       </details>
       <details class="qa">
         <summary>当日、止まったり、数字が<wbr>合わなくなったり<wbr>しませんか？</summary>
-        <div class="a"><p>2026年は、3日間とも決済は止まりませんでした。5分おきに全員の残高を取引の記録と突き合わせ、ずれは一度も出ていません。サーバーの異常や残高のずれがあれば、知らせが運営にメールで届く設定です。誤ってデータを消しても、過去7日のうちの時点に戻せます。</p></div>
+        <div class="a"><p><span class="nw">2026年</span>は、<span class="nw">3日間</span>とも決済は止まりませんでした。<span class="nw">5分</span>おきに全員の残高を取引の記録と突き合わせ、ずれは一度も出ていません。サーバーの異常や残高のずれがあれば、知らせが運営にメールで届く設定です。誤ってデータを消しても、過去<span class="nw">7日</span>のうちの時点に戻せます。</p></div>
       </details>
       <details class="qa">
         <summary>日時や金額の設定は、学校で変えられますか？</summary>
-        <div class="a"><p>日時や金額などの設定は、先生方が管理シートで書き換えられます。反映まで5〜6分ほどです。1回に払える上限も、学校ごとに決められます。</p></div>
+        <div class="a"><p>日時や金額などの設定は、先生方が管理シートで書き換えられます。反映まで<span class="nw">5〜6分</span>ほどです。<span class="nw">1回</span>に払える上限も、学校ごとに決められます。</p></div>
       </details>
 
       <h3 class="faq-group">来場者と当日</h3>
       <details class="qa">
         <summary>個人の情報は、どう扱いますか？</summary>
-        <div class="a"><p>登録で入力していただくのは、お名前と区分だけです。レジ係の画面には、お客さんのお名前は出ません。管理シートに自動でまとまる会員の一覧や、売上・お金の動きの表にも、お名前は書きません。受付と先生の担当の一覧にだけ、担当の方がLINEに設定している名前が載ります。公開した運用報告にも、お名前などの個人の情報は載せていません。学園祭のあとのデータの扱いは、学校の決まりをうかがって、始める前に一緒に決めます。</p></div>
+        <div class="a"><p>登録で入力していただくのは、お名前と区分だけです。</p><ul><li>レジ係の画面には、お客さんのお名前は出ません。</li><li>管理シートに自動でまとまる会員の一覧や、売上・お金の動きの表にも、お名前は書きません。</li><li>受付と先生の担当の一覧にだけ、担当の方がLINEに設定している名前が載ります。</li><li>公開した運用報告にも、お名前などの個人の情報は載せていません。</li></ul><p>学園祭のあとのデータの扱いは、学校の決まりをうかがって、始める前に一緒に決めます。</p></div>
       </details>
       <details class="qa">
         <summary>スマートフォンやLINEをお持ちでない方は？ 校内でスマートフォンを制限している場合は？</summary>
@@ -718,17 +869,17 @@
       </details>
       <details class="qa">
         <summary>AIの実行委員長は、何に答えますか？</summary>
-        <div class="a"><p>AIが実行委員長として、出し物などの質問に答えます。本校の2日間で、218件の質問が届きました。</p></div>
+        <div class="a"><p>AIが実行委員長として、出し物などの質問に答えます。本校の<span class="nw">2日間</span>で、<span class="nw">218件</span>の質問が届きました。</p></div>
       </details>
       <details class="qa">
         <summary>当日は、どう支えてもらえますか？</summary>
-        <div class="a"><p>2026年は、5分おきの残高の照合と、異常の知らせで当日を見守りました。中野キャンパスでは、学校からいただいたお問い合わせ4件に、記録を調べて当日中にお返事しました。当日の体制は、学校ごとにご相談のうえで決めます。</p></div>
+        <div class="a"><p><span class="nw">2026年</span>は、<span class="nw">5分</span>おきの残高の照合と、異常の知らせで当日を見守りました。中野キャンパスでは、学校からいただいたお問い合わせ<span class="nw">4件</span>に、記録を調べて当日中にお返事しました。当日の体制は、学校ごとにご相談のうえで決めます。</p></div>
       </details>
 
       <h3 class="faq-group">ご相談</h3>
       <details class="qa">
         <summary>見積もりだけでも頼めますか？ 相談や見積もりに、費用はかかりますか？</summary>
-        <div class="a"><p>ご相談とお見積もりは無料です。費用は、行事の規模と、使うメニューで変わります。お話をうかがったうえで、お見積もりを書面でお出しします。校内でご検討のうえ、見送りになっても構いません。こちらから繰り返しご連絡することはありません。来年度の予算を考える前の、概算だけのご相談も歓迎です。</p></div>
+        <div class="a"><p>ご相談とお見積もりは無料です。</p><ul><li>費用は、行事の規模と、使うメニューで変わります。お話をうかがったうえで、お見積もりを書面でお出しします。</li><li>校内でご検討のうえ、見送りになっても構いません。こちらから繰り返しご連絡することはありません。</li><li>来年度の予算を考える前の、概算だけのご相談も歓迎です。</li></ul></div>
       </details>
       <details class="qa">
         <summary>公立の学校や、小さな行事でも頼めますか？</summary>
@@ -736,7 +887,7 @@
       </details>
       <details class="qa">
         <summary>いつ、どうやって相談すればよいですか？</summary>
-        <div class="a"><p>メールでご相談ください。日程が決まる前でも構いません。来年度の行事を考え始めたところで、一言お送りいただければ大丈夫です。管理職の先生に話す前の、下調べの段階でも歓迎です。2営業日以内にメールでお返事します。ご相談には、開発を担当した代表の仲条がお答えします。こちらからお電話をするのは、ご希望をいただいた先生にだけです。お電話がよい場合は、お名前と電話番号、ご都合のよい時間帯を書き添えてください。オンラインで30分ほど、当日の写真と動画でご説明することもできます。遠方の学校も、オンラインでご相談いただけます。高校のほか、中学校・大学・専門学校の学園祭や、地域のお祭りのご相談も受け付けています。</p></div>
+        <div class="a"><p>メールでご相談ください。</p><ul><li><b>時期</b>日程が決まる前でも構いません。来年度の行事を考え始めたところで、一言お送りいただければ大丈夫です。管理職の先生に話す前の、下調べの段階でも歓迎です。</li><li><b>お返事</b><span class="nw">2営業日</span>以内にメールでお返事します。ご相談には、開発を担当した代表の仲条がお答えします。</li><li><b>お電話</b>こちらからお電話をするのは、ご希望をいただいた先生にだけです。お電話がよい場合は、お名前と電話番号、ご都合のよい時間帯を書き添えてください。</li><li><b>オンライン</b>オンラインで<span class="nw">30分</span>ほど、当日の写真と動画でご説明することもできます。遠方の学校も、オンラインでご相談いただけます。</li><li><b>対象</b>高校のほか、中学校・大学・専門学校の学園祭や、地域のお祭りのご相談も受け付けています。</li></ul></div>
       </details>
     </div>
   </div>
@@ -752,17 +903,17 @@
           <p>文化祭・学園祭のキャッシュレス化や、会計・投票・案内のデジタル化について、ご相談を受け付けています。金券やつり銭の準備、閉場後の集計など、気になっていることをお聞かせください。行事の規模や当日の体制に合わせて、仕組みと運用の形をご提案します。</p>
           <ul class="promises">
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>ご相談とお見積もりは無料。概算だけのご相談も歓迎です</span></li>
-            <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>メールには2営業日以内に、代表の仲条がお返事します</span></li>
+            <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>メールには<span class="nw">2営業日</span>以内に、代表の仲条がお返事します</span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お見積もりは書面でお出しします。見送りになっても構いません</span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>こちらから繰り返しご連絡することはありません</span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お電話は、ご希望をいただいた先生にだけおかけします</span></li>
-            <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>オンラインで30分ほど、当日の写真と動画でご説明。遠方の学校も歓迎です</span></li>
+            <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>オンラインで<span class="nw">30分</span>ほど、当日の写真と動画でご説明。遠方の学校も歓迎です</span></li>
           </ul>
           <p class="promises-note">公立・私立を問わず、高校のほか、中学校・大学・専門学校の学園祭や、地域のお祭りのご相談も歓迎です。</p>
         </div>
         <div class="mailcard" id="contact-mail">
           <h3>メールでのご相談</h3>
-          <p>メールは一言で構いません。書けるところだけ、次の4つをお書きください。</p>
+          <p>メールは一言で構いません。書けるところだけ、次の<span class="nw">4つ</span>をお書きください。</p>
           <ol class="fields">
             <li>学校名（はじめは「県立高校」のような書き方でも構いません）</li>
             <li>行事の時期</li>
@@ -779,7 +930,7 @@
             </dl>
             <p class="who">株式会社TeaBreak　仲条</p>
           </div>
-          <a class="guide-link" href="files/meipay-guide-for-schools.pdf"><span class="pdf">PDF</span><span><small>職員会議などでのご説明に</small><b>MeiPay 学校向けのご案内（A4・1枚）</b></span></a>
+          <a class="guide-link" href="files/meipay-guide-for-schools.pdf"><span class="pdf">PDF</span><span><small>職員会議などでのご説明に</small><b>MeiPay 学校向けのご案内（<span class="nw">A4・1枚</span>）</b></span></a>
         </div>
       </div>
       <p class="closing">何も決まっていない段階でも、まずはお話を聞かせてください。管理職の先生に話す前の、下調べの段階でも歓迎です。</p>
@@ -791,18 +942,18 @@
   <div class="wrap">
     <p class="eyebrow">資料</p>
     <h2 id="reports-h">運用報告と、学校向けのご案内</h2>
-    <p class="measure">運用報告の公開版は、学校へ提出した報告を、学校の了承を得て公開用にまとめたものです。職員会議などでのご説明には、運用報告と、A4・1枚の「学校向けのご案内」をお使いください。</p>
+    <p class="measure">運用報告の公開版は、学校へ提出した報告を、学校の了承を得て公開用にまとめたものです。職員会議などでのご説明には、運用報告と、<span class="nw">A4・1枚</span>の「学校向けのご案内」をお使いください。</p>
     <ul class="reports">
-      <li><a href="files/meipay-report-honkou-2026-public.pdf"><span class="pdf">PDF</span><span><b>MeiPay運用報告 公開版<br>（2026明聖祭・本校・<span class="nw">10月23日〜24日）</span></b><small>3ページ</small></span></a></li>
-      <li><a href="files/meipay-report-nakano-2026-public.pdf"><span class="pdf">PDF</span><span><b>MeiPay運用報告 公開版<br>（第10回学園祭・中野キャンパス・<span class="nw">10月25日）</span></b><small>3ページ</small></span></a></li>
-      <li class="guide"><a href="files/meipay-guide-for-schools.pdf"><span class="pdf">PDF</span><span><b>MeiPay 学校向けのご案内</b><small>A4・1枚</small></span></a></li>
+      <li><a href="files/meipay-report-honkou-2026-public.pdf"><span class="pdf">PDF</span><span><b>MeiPay運用報告 公開版<br>（<span class="nw">2026明聖祭</span>・本校・<span class="nw">10月23日〜24日）</span></b><small><span class="nw">3ページ</span></small></span></a></li>
+      <li><a href="files/meipay-report-nakano-2026-public.pdf"><span class="pdf">PDF</span><span><b>MeiPay運用報告 公開版<br>（<span class="nw">第10回</span>学園祭・中野キャンパス・<span class="nw">10月25日）</span></b><small><span class="nw">3ページ</span></small></span></a></li>
+      <li class="guide"><a href="files/meipay-guide-for-schools.pdf"><span class="pdf">PDF</span><span><b>MeiPay 学校向けのご案内</b><small><span class="nw">A4・1枚</span></small></span></a></li>
     </ul>
     <div class="next">
       <h3>次回に向けて</h3>
-      <p>中野キャンパスの運用報告から、次回に向けた学びを2つ載せます。</p>
+      <p>中野キャンパスの運用報告から、次回に向けた学びを<span class="nw">2つ</span>載せます。</p>
       <ul>
         <li>レジ係の手順と、会員証で残高を見直す方法は、当日より前にお伝えする</li>
-        <li>1回に払える上限は、1回のお会計の合計に合わせる</li>
+        <li><span class="nw">1回</span>に払える上限は、<span class="nw">1回</span>のお会計の合計に合わせる</li>
       </ul>
     </div>
   </div>
@@ -810,8 +961,7 @@
 
 <section id="company" class="alt" aria-labelledby="company-h">
   <div class="wrap">
-    <p class="eyebrow">会社の情報</p>
-    <h2 id="company-h">株式会社TeaBreak</h2>
+    <h2 id="company-h" class="company-h">運営会社</h2>
     <dl class="company">
       <div><dt>会社名</dt><dd>株式会社TeaBreak</dd></div>
       <div><dt>代表者</dt><dd>代表取締役　仲条 高幸</dd></div>
