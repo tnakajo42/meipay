@@ -170,7 +170,10 @@
   .menu .ic { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--teal); color: var(--gold); }
   .menu b { display: block; font-size: 17px; line-height: 1.5; color: var(--teal); }
   .menu span { display: block; font-size: 16px; line-height: 1.6; color: var(--muted); word-break: auto-phrase; }
-  .menu span.kp { word-break: keep-all; overflow-wrap: anywhere; }
+  .menu span.kp, .kp { word-break: keep-all; overflow-wrap: anywhere; }
+  @media (max-width: 319.98px) { .history .nw, .history .kp, .fields .nw, .fields .kp { white-space: normal; word-break: inherit; overflow-wrap: inherit; } }
+  @media (max-width: 299.98px) { .nw { white-space: normal; } }
+  @supports not (word-break: auto-phrase) { .qa summary { word-break: keep-all; overflow-wrap: anywhere; } }
 
   /* media */
   .media { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; margin-top: 8px; }
@@ -387,10 +390,6 @@
     .hero-cta .btn { flex: 0 1 auto; }
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .stats li { padding: 22px 20px; }
-    .steps { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .steps li { padding: 20px 20px 22px; }
-    .steps li::before { position: static; margin-bottom: 12px; }
-    .points { grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .menu { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .menu li { flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 16px; }
     .media { grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -411,10 +410,6 @@
     .rtable td { padding: 10px 18px; border-top: 1px solid var(--line); }
     .rtable td + td { border-left: 1px solid var(--line); }
     .rtable td::before { display: none; }
-    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
-    .flow li { padding: 36px 20px 0 0; }
-    .flow li::before { left: 0; top: 0; }
-    .flow li::after { left: 26px; right: 4px; top: 9px; bottom: auto; width: auto; height: 4px; }
     .charts.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
     .charts .chart { max-width: none; }
     .vtable thead td { width: 9em; }
@@ -433,9 +428,17 @@
     h1 { font-size: clamp(34px, calc((100vw - 140px) / 23.5), 42px); }
     .hero-fig { margin: 0; }
     .stats { grid-template-columns: repeat(4, 1fr); }
+    .steps { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .steps li { padding: 20px 20px 22px; }
+    .steps li::before { position: static; margin-bottom: 12px; }
+    .points { grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .menu { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     .reports { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
     .year { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 48px; align-items: start; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
+    .flow li { padding: 36px 20px 0 0; }
+    .flow li::before { left: 0; top: 0; }
+    .flow li::after { left: 26px; right: 4px; top: 9px; bottom: auto; width: auto; height: 4px; }
     .cta { padding: 56px 52px; }
     .cta-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; align-items: start; }
     .mailcard { margin-top: 0; padding: 28px 26px; }
@@ -477,18 +480,18 @@
         <p class="kicker"><span class="nw">2026年10月</span>の実績</p>
         <h1><span class="nw">文化祭・学園祭の</span><wbr><span class="nw">会計に、</span><wbr><span class="nw">LINEを活用。</span></h1>
         <div class="rule" aria-hidden="true"></div>
-        <p class="hero-sub">明聖高等学校の校内通貨「MeiPay」</p>
+        <p class="hero-sub"><span class="nw">明聖高等学校の</span><wbr><span class="nw">校内通貨「MeiPay」</span></p>
         <p class="hero-lead">会員証もレジも、LINEから使えます。本校と中野キャンパスの学園祭、<span class="nw">3日間</span>の記録です。</p>
         <ul class="proof" aria-label="3日間の結果">
-          <li><b>7,989<small>件</small></b><span><span class="nw">3日間</span>の支払い</span></li>
-          <li><b class="word">止まらず</b><span>決済は<span class="nw">3日間</span>とも</span></li>
-          <li><b>0</b><span>残高の照合でのずれ</span></li>
+          <li><b>7,989<small>件</small></b><span><span class="nw">3日間の</span><wbr><span class="nw">支払い</span></span></li>
+          <li><b class="word">止まらず</b><span><span class="nw">決済は</span><wbr><span class="nw">3日間とも</span></span></li>
+          <li><b>0</b><span><span class="nw">残高の</span><wbr><span class="nw">照合でのずれ</span></span></li>
         </ul>
         <div class="hero-cta">
           <a class="btn" href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AE%E4%BC%9A%E8%A8%88%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6&body=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BETeaBreak%E3%80%80%E4%BB%B2%E6%9D%A1%E6%A7%98%0D%0A%0D%0AMeiPay%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%80%81%E7%9B%B8%E8%AB%87%E3%81%95%E3%81%9B%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0D%0A%0D%0A%E5%AD%A6%E6%A0%A1%E5%90%8D%EF%BC%9A%0D%0A%E8%A1%8C%E4%BA%8B%E3%81%AE%E6%99%82%E6%9C%9F%EF%BC%9A%0D%0A%E7%94%9F%E5%BE%92%E3%81%A8%E6%9D%A5%E5%A0%B4%E8%80%85%E3%81%AE%E3%81%8A%E3%81%8A%E3%82%88%E3%81%9D%E3%81%AE%E4%BA%BA%E6%95%B0%EF%BC%9A%0D%0A%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E4%B8%80%E8%A8%80%E3%81%A7%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%EF%BC%9A%0D%0A%0D%0A%E9%9B%BB%E8%A9%B1%E3%81%A7%E3%81%AE%E9%80%A3%E7%B5%A1%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%A0%E3%81%91%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%EF%BC%9A%0D%0A%E3%81%94%E9%83%BD%E5%90%88%E3%81%AE%E3%82%88%E3%81%84%E6%99%82%E9%96%93%E5%B8%AF%EF%BC%9A%0D%0A"><svg class="ic-svg" aria-hidden="true"><use href="#i-mail"/></svg>メールで相談する</a>
           <a class="btn btn-ghost" href="#faq">よくある質問</a>
         </div>
-        <p class="hero-note">ご相談とお見積もりは無料。<span class="nw">2営業日</span>以内にお返事します。<br>メールが開かないときは、<a class="nw" href="#contact-mail">宛先と件名はこちら</a>。</p>
+        <p class="hero-note">ご相談とお見積もりは無料。<wbr><span class="nw">2営業日以内に</span><wbr><span class="nw">お返事します。</span><br><span class="nw">メールが開かないときは、</span><wbr><a class="nw" href="#contact-mail">宛先と件名はこちら</a>。</p>
       </div>
       <figure class="hero-fig">
         <img src="img/hero.jpg" width="1200" height="914" alt="模擬店の会計でスマートフォンを差し出す手元と、手に持ったスマートフォンに出した会員証とメニュー" fetchpriority="high">
@@ -530,7 +533,7 @@
     <h2 id="how-h">会員証もレジも、LINEから使える</h2>
     <ol class="steps">
       <li>
-        <h3>友だち追加して、会員登録</h3>
+        <h3><span class="nw">友だち追加して、</span><wbr><span class="nw">会員登録</span></h3>
         <p>生徒も保護者も、まず学園祭のLINE公式アカウントを友だち追加。入力するのは、お名前と区分だけです。</p>
       </li>
       <li>
@@ -538,7 +541,7 @@
         <p>メニューの「会員証」を押すと、QRコードと残高が出ます。</p>
       </li>
       <li>
-        <h3>レジ係のスマートフォンで読み取り</h3>
+        <h3><span class="nw">レジ係の</span><wbr><span class="nw">スマートフォンで</span><wbr><span class="nw">読み取り</span></h3>
         <p>模擬店では、レジ係が会員証のQRを読み取り、金額を入れて確定。</p>
       </li>
     </ol>
@@ -622,7 +625,7 @@
         <tr><th scope="row">会員</th><td>1,266人</td><td>620人<span class="sub">うち当日登録229人</span></td></tr>
         <tr><th scope="row">レジ</th><td>15か所</td><td>9か所</td></tr>
         <tr><th scope="row">残高の照合</th><td>266回、<span class="nw2">ずれ0</span><span class="sub">5分おき</span></td><td>109回、<span class="nw2">ずれ0</span><span class="sub">5分おき</span></td></tr>
-        <tr><th scope="row">決済</th><td>2日間とも止まらず</td><td>1日を通して止まらず</td></tr>
+        <tr><th scope="row">決済</th><td><span class="nw">2日間とも</span><wbr><span class="nw">止まらず</span></td><td><span class="nw">1日を通して</span><wbr><span class="nw">止まらず</span></td></tr>
       </tbody>
     </table>
     <ul class="notes">
@@ -639,7 +642,7 @@
     </div>
     <div class="charts two">
       <figure class="chart" aria-labelledby="f2-t">
-        <figcaption><span class="ttl" id="f2-t">本校　<span class="nw">1時間</span>ごとの支払いの件数</span><span class="unit"><span class="nw">15か所</span>のレジの合計です。</span></figcaption>
+        <figcaption><span class="ttl" id="f2-t"><span class="nw">本校</span>　<span class="nw">1時間ごとの支払いの件数</span></span><span class="unit"><span class="nw">15か所</span>のレジの合計です。</span></figcaption>
         <ul class="legend" aria-hidden="true">
           <li><i class="light"></i>10月23日（金）在校生のみの日</li>
           <li><i></i>10月24日（土）一般公開の日</li>
@@ -659,7 +662,7 @@
         <p class="foot">決済の受付は両日とも<span class="nw">9時〜17時で、</span><wbr><span class="nw">16時台・</span><wbr><span class="nw">17時台は</span><wbr><span class="nw">0件です。</span><wbr><span class="nw">23日の</span>支払いは<span class="nw">12時45分</span>ごろまでに落ち着き、<span class="nw">13時台・</span><wbr><span class="nw">14時台は</span><wbr><span class="nw">0件でした。</span></p>
       </figure>
       <figure class="chart" aria-labelledby="f3-t">
-        <figcaption><span class="ttl" id="f3-t">中野キャンパス　<span class="nw">30分</span>ごとの支払いの件数</span><span class="unit"><span class="nw">10月25日（日）</span>。全レジの合計です。</span></figcaption>
+        <figcaption><span class="ttl" id="f3-t"><span class="nw">中野キャンパス</span>　<span class="nw">30分ごとの</span><wbr><span class="nw">支払いの件数</span></span><span class="unit"><span class="nw">10月25日（日）</span>。全レジの合計です。</span></figcaption>
         <table class="bars peak-at">
           <thead class="sr"><tr><th scope="col">30分の区切り</th><th scope="col">支払いの件数</th></tr></thead>
           <tbody>
@@ -694,7 +697,7 @@
       <li><b><span class="nw">5分</span>おきに照合、ずれ0</b><span>全員の残高を、取引の記録と突き合わせました。本校<span class="nw">266回</span>、中野キャンパス<span class="nw">109回</span>。残高と記録が食い違う「ずれ」は、一度も出ていません。</span></li>
       <li><b>異常は運営にメールで届く</b><span>サーバーの異常や残高のずれがあれば、知らせが運営にメールで届く設定です。</span></li>
       <li><b>過去<span class="nw">7日</span>に戻せる</b><span>誤ってデータを消しても、過去<span class="nw">7日</span>のうちの時点に戻せます。</span></li>
-      <li class="wide"><b><span class="nw">14,253回</span>すべてに応答</b><span>中野キャンパスでは、LINEからの呼び出しにすべて応答。95%は<span class="nw">0.29秒</span>以内に返しました。</span></li>
+      <li class="wide"><b><span class="nw">14,253回</span>すべてに応答</b><span>中野キャンパスでは、LINEからの呼び出しにすべて応答。95%は<span class="nw">0.29秒以内に返しました。</span></span></li>
     </ul>
     <h3 class="rules-title">会計の決まりも、仕組みの中に</h3>
     <ul class="rules">
@@ -702,7 +705,7 @@
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>チャージで受け取る現金は、学校の受付が管理します。TeaBreakがお金をお預かりすることはありません</span></li>
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>受付の現金は、チャージの記録と突き合わせて締められます</span></li>
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>打ち間違えた支払いは、受付で返金して直せます</span></li>
-      <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>レジごとの売上と件数は、管理シート（先生方が見られる表）に<span class="nw">5分</span>ごとに自動でまとまります</span></li>
+      <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>レジごとの売上と件数は、管理シート（先生方が見られる表）に<span class="nw">5分</span>ごとに<span class="nw">自動でまとまります</span></span></li>
       <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お金の動きはすべて記録され、いつ、どのレジや担当が、いくら動かしたかを、あとから確かめられます</span></li>
     </ul>
   </div>
@@ -711,7 +714,7 @@
 <section id="voices" aria-labelledby="voices-h">
   <div class="wrap">
     <p class="eyebrow">使った人の声</p>
-    <h2 id="voices-h">「支払いスムーズでした！」</h2>
+    <h2 id="voices-h"><span class="nw">「支払い</span><wbr><span class="nw">スムーズでした！」</span></h2>
     <p class="measure">中野キャンパスで学校が行ったアンケート「開発者に伝えたいこと」から、原文のまま一部を紹介します。</p>
     <ul class="voices">
       <li>スムーズに使用が出来ました！ 残金もちゃんとわかるのでお買い物しやすかったです。毎年改良されててすごいなと思います。</li>
@@ -738,18 +741,18 @@
         <h2 id="story-h">担当して<span class="nw">3年目</span></h2>
         <p>代表の仲条は、<span class="nw">2024年</span>から明聖高等学校の学園祭で、LINEを活用したボットを担当しています。今年で<span class="nw">3年目</span>。</p>
         <ul class="history">
-          <li><span class="yr">2024年から</span><span>明聖高等学校（本校・中野キャンパス）</span></li>
-          <li><span class="yr">2025年</span><span>福島県の郡山北工業高等学校<br>LINEを活用した「キタコバン」</span></li>
+          <li><span class="yr">2024年から</span><span>明聖高等学校<wbr><span class="nw">（本校・</span><wbr><span class="kp">中野キャンパス）</span></span></li>
+          <li><span class="yr">2025年</span><span>福島県の<wbr><span class="nw">郡山北工業</span><span class="nw">高等学校</span><br>LINEを活用した<wbr><span class="kp">「キタコバン」</span></span></li>
         </ul>
       </div>
       <div>
         <blockquote class="comment">
-          <p>「学園祭のお金は、生徒が準備してきた出し物の売上です。だから、残高と取引の記録が合っていることを、当日のうちに確かめ続けられる仕組みにしました。<span class="nw">3日間</span>、決済が止まらず、<span class="nw">5分</span>おきの照合でもずれが出なかったのは、明聖高等学校の先生方と生徒の皆さんが、練習の日から本番まで使いこなしてくださったおかげです。運用報告の公開版には、数字と一緒に、いただいた要望もそのまま載せました。文化祭の会計や案内を見直したい先生方の、判断の材料になればうれしいです。何も決まっていない段階でも、まずはお話を聞かせてください。」</p>
+          <p>「学園祭のお金は、生徒が準備してきた出し物の売上です。だから、残高と取引の記録が合っていることを、当日のうちに確かめ続けられる仕組みにしました。<span class="nw">3日間</span>、決済が止まらず、<span class="nw">5分</span>おきの照合でもずれが出なかったのは、明聖高等学校の先生方と生徒の皆さんが、練習の日から本番まで使いこなしてくださったおかげです。運用報告の公開版には、数字と一緒に、いただいた要望もそのまま載せました。文化祭の会計や案内を見直したい先生方の、判断の材料になればうれしいです。何も決まっていない段階でも、まずは<span class="kp">お話を聞かせてください。」</span></p>
           <footer>株式会社TeaBreak<br>代表取締役　仲条 高幸</footer>
         </blockquote>
         <div class="cta-row">
           <a class="btn btn-dark" href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AE%E4%BC%9A%E8%A8%88%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6&body=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BETeaBreak%E3%80%80%E4%BB%B2%E6%9D%A1%E6%A7%98%0D%0A%0D%0AMeiPay%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%80%81%E7%9B%B8%E8%AB%87%E3%81%95%E3%81%9B%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0D%0A%0D%0A%E5%AD%A6%E6%A0%A1%E5%90%8D%EF%BC%9A%0D%0A%E8%A1%8C%E4%BA%8B%E3%81%AE%E6%99%82%E6%9C%9F%EF%BC%9A%0D%0A%E7%94%9F%E5%BE%92%E3%81%A8%E6%9D%A5%E5%A0%B4%E8%80%85%E3%81%AE%E3%81%8A%E3%81%8A%E3%82%88%E3%81%9D%E3%81%AE%E4%BA%BA%E6%95%B0%EF%BC%9A%0D%0A%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E4%B8%80%E8%A8%80%E3%81%A7%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%EF%BC%9A%0D%0A%0D%0A%E9%9B%BB%E8%A9%B1%E3%81%A7%E3%81%AE%E9%80%A3%E7%B5%A1%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%A0%E3%81%91%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%EF%BC%9A%0D%0A%E3%81%94%E9%83%BD%E5%90%88%E3%81%AE%E3%82%88%E3%81%84%E6%99%82%E9%96%93%E5%B8%AF%EF%BC%9A%0D%0A"><svg class="ic-svg" aria-hidden="true"><use href="#i-mail"/></svg>メールで相談する</a>
-          <p>ご相談とお見積もりは無料。<span class="nw">2営業日</span>以内にお返事します。</p>
+          <p>ご相談とお見積もりは無料。<wbr><span class="nw">2営業日以内に</span><wbr><span class="nw">お返事します。</span></p>
         </div>
       </div>
     </div>
@@ -824,69 +827,69 @@
 
       <h3 class="faq-group">使い方と準備</h3>
       <details class="qa">
-        <summary>専用の機器は要りますか？</summary>
+        <summary>専用の機器は<wbr>要りますか？</summary>
         <div class="a"><p>専用のレジ機器は置きません。模擬店では、レジ係がスマートフォンで会員証のQRを読み取り、金額を入れて確定します。読み取りには、LINEに入っているQRコードリーダーを使います。</p></div>
       </details>
       <details class="qa">
-        <summary>来場者や保護者は、何を用意すればよいですか？</summary>
+        <summary>来場者や<wbr>保護者は、<wbr>何を<wbr>用意すれば<wbr>よいですか？</summary>
         <div class="a"><p>学園祭のLINE公式アカウントを友だち追加して、会員登録をします。入力していただくのは、お名前と区分だけ。生年月日や電話番号、メールアドレスはお聞きしません。メニューの「会員証」を押すと、QRコードと残高が出ます。</p></div>
       </details>
       <details class="qa">
-        <summary>現金は、どこで扱いますか？</summary>
+        <summary>現金は、<wbr>どこで<wbr>扱いますか？</summary>
         <div class="a"><p>MeiPayのチャージは、受付で現金を受け取り、その場でLINEから行います。MeiPayでのお支払いでは、レジ係は会員証を読んで金額を入れるだけです。チャージで受け取る現金は、学校の受付が管理します。TeaBreakがお金をお預かりすることはありません。受付の現金は、チャージの記録と突き合わせて締められます。</p></div>
       </details>
       <details class="qa">
-        <summary>打ち間違えたときや、QRが読めないときは？</summary>
+        <summary>打ち間違えた<wbr>ときや、<wbr>QRが<wbr>読めない<wbr>ときは？</summary>
         <div class="a"><p>打ち間違えて確定した支払いは、受付で返金して直せます。会員証のQRがうまく読めないときは、受付で会員番号から支払いを代わりに進められます。</p></div>
       </details>
       <details class="qa">
-        <summary>本番の前に練習できますか？ レジ係は、どう決めますか？</summary>
+        <summary>本番の前に<wbr>練習できますか？ レジ係は、<wbr>どう決めますか？</summary>
         <div class="a"><p>本番の前に、練習の時間を設けられます。練習中の支払いには「テスト」の印が付き、本番の売上には入りません。練習で動いた残高は、練習のあとに元に戻します。レジ係は、レジに置いたカードのQRを読み取り、送信を<span class="nw">1回</span>押すと担当になれます。練習の日に担当になっておけば、本番の日はそのまま使えます。</p></div>
       </details>
 
       <h3 class="faq-group">お金と記録</h3>
       <details class="qa">
-        <summary>模擬店ごとの売上は分かりますか？</summary>
+        <summary>模擬店ごとの<wbr>売上は<wbr>分かりますか？</summary>
         <div class="a"><p>レジごとの売上と件数は、管理シートに<span class="nw">5分</span>ごとに自動でまとまります。練習の分は除き、返金は差し引いた数です。お金の動きはすべて記録され、いつ、どのレジや担当が、いくら動かしたかを、あとから確かめられます。</p></div>
       </details>
       <details class="qa">
-        <summary>当日、止まったり、数字が<wbr>合わなくなったり<wbr>しませんか？</summary>
+        <summary>当日、<wbr>止まったり、<wbr>数字が<wbr>合わなくなったり<wbr>しませんか？</summary>
         <div class="a"><p><span class="nw">2026年</span>は、<span class="nw">3日間</span>とも決済は止まりませんでした。<span class="nw">5分</span>おきに全員の残高を取引の記録と突き合わせ、ずれは一度も出ていません。サーバーの異常や残高のずれがあれば、知らせが運営にメールで届く設定です。誤ってデータを消しても、過去<span class="nw">7日</span>のうちの時点に戻せます。</p></div>
       </details>
       <details class="qa">
-        <summary>日時や金額の設定は、学校で変えられますか？</summary>
+        <summary>日時や金額の<wbr>設定は、<wbr>学校で<wbr>変えられますか？</summary>
         <div class="a"><p>日時や金額などの設定は、先生方が管理シートで書き換えられます。反映まで<span class="nw">5〜6分</span>ほどです。<span class="nw">1回</span>に払える上限も、学校ごとに決められます。</p></div>
       </details>
 
       <h3 class="faq-group">来場者と当日</h3>
       <details class="qa">
-        <summary>個人の情報は、どう扱いますか？</summary>
+        <summary>個人の情報は、<wbr>どう扱いますか？</summary>
         <div class="a"><p>登録で入力していただくのは、お名前と区分だけです。</p><ul><li>レジ係の画面には、お客さんのお名前は出ません。</li><li>管理シートに自動でまとまる会員の一覧や、売上・お金の動きの表にも、お名前は書きません。</li><li>受付と先生の担当の一覧にだけ、担当の方がLINEに設定している名前が載ります。</li><li>公開した運用報告にも、お名前などの個人の情報は載せていません。</li></ul><p>学園祭のあとのデータの扱いは、学校の決まりをうかがって、始める前に一緒に決めます。</p></div>
       </details>
       <details class="qa">
-        <summary>スマートフォンやLINEをお持ちでない方は？ 校内でスマートフォンを制限している場合は？</summary>
+        <summary>スマートフォンや<wbr>LINEを<wbr>お持ちでない方は？ 校内で<wbr>スマートフォンを<wbr>制限している<wbr>場合は？</summary>
         <div class="a"><p>MeiPayは、スマートフォンのLINEから使う仕組みです。スマートフォンやLINEをお持ちでない方への対応や、校内でスマートフォンを制限している場合の進め方は、学校の決まりをうかがったうえで、ご相談のなかで決めます。</p></div>
       </details>
       <details class="qa">
-        <summary>AIの実行委員長は、何に答えますか？</summary>
+        <summary>AIの<wbr>実行委員長は、<wbr>何に<wbr>答えますか？</summary>
         <div class="a"><p>AIが実行委員長として、出し物などの質問に答えます。本校の<span class="nw">2日間</span>で、<span class="nw">218件</span>の質問が届きました。</p></div>
       </details>
       <details class="qa">
-        <summary>当日は、どう支えてもらえますか？</summary>
+        <summary>当日は、<wbr>どう支えて<wbr>もらえますか？</summary>
         <div class="a"><p><span class="nw">2026年</span>は、<span class="nw">5分</span>おきの残高の照合と、異常の知らせで当日を見守りました。中野キャンパスでは、学校からいただいたお問い合わせ<span class="nw">4件</span>に、記録を調べて当日中にお返事しました。当日の体制は、学校ごとにご相談のうえで決めます。</p></div>
       </details>
 
       <h3 class="faq-group">ご相談</h3>
       <details class="qa">
-        <summary>見積もりだけでも頼めますか？ 相談や見積もりに、費用はかかりますか？</summary>
+        <summary>見積もりだけでも<wbr>頼めますか？ 相談や<wbr>見積もりに、<wbr>費用は<wbr>かかりますか？</summary>
         <div class="a"><p>ご相談とお見積もりは無料です。</p><ul><li>費用は、行事の規模と、使うメニューで変わります。お話をうかがったうえで、お見積もりを書面でお出しします。</li><li>校内でご検討のうえ、見送りになっても構いません。こちらから繰り返しご連絡することはありません。</li><li>来年度の予算を考える前の、概算だけのご相談も歓迎です。</li></ul></div>
       </details>
       <details class="qa">
-        <summary>公立の学校や、小さな行事でも頼めますか？</summary>
+        <summary>公立の学校や、<wbr>小さな<wbr>行事でも<wbr>頼めますか？</summary>
         <div class="a"><p>公立・私立を問わず、ご相談を受け付けています。模擬店が数店の行事でも構いません。お金の扱いやお申し込みの形は、学校ごとの決まりに合わせて、ご相談のうえで決めます。</p></div>
       </details>
       <details class="qa">
-        <summary>いつ、どうやって相談すればよいですか？</summary>
+        <summary>いつ、<wbr>どうやって<wbr>相談すれば<wbr>よいですか？</summary>
         <div class="a"><p>メールでご相談ください。</p><ul><li><b>時期</b>日程が決まる前でも構いません。来年度の行事を考え始めたところで、一言お送りいただければ大丈夫です。管理職の先生に話す前の、下調べの段階でも歓迎です。</li><li><b>お返事</b><span class="nw">2営業日</span>以内にメールでお返事します。ご相談には、開発を担当した代表の仲条がお答えします。</li><li><b>お電話</b>こちらからお電話をするのは、ご希望をいただいた先生にだけです。お電話がよい場合は、お名前と電話番号、ご都合のよい時間帯を書き添えてください。</li><li><b>オンライン</b>オンラインで<span class="nw">30分</span>ほど、当日の写真と動画でご説明することもできます。遠方の学校も、オンラインでご相談いただけます。</li><li><b>対象</b>高校のほか、中学校・大学・専門学校の学園祭や、地域のお祭りのご相談も受け付けています。</li></ul></div>
       </details>
     </div>
@@ -904,7 +907,7 @@
           <ul class="promises">
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>ご相談とお見積もりは無料。概算だけのご相談も歓迎です</span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>メールには<span class="nw">2営業日</span>以内に、代表の仲条がお返事します</span></li>
-            <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お見積もりは書面でお出しします。見送りになっても構いません</span></li>
+            <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お見積もりは書面でお出しします。<span class="nw">見送りになっても構いません</span></span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>こちらから繰り返しご連絡することはありません</span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>お電話は、ご希望をいただいた先生にだけおかけします</span></li>
             <li><svg class="ic-svg" aria-hidden="true"><use href="#i-check"/></svg><span>オンラインで<span class="nw">30分</span>ほど、当日の写真と動画でご説明。遠方の学校も歓迎です</span></li>
@@ -918,7 +921,7 @@
             <li>学校名（はじめは「県立高校」のような書き方でも構いません）</li>
             <li>行事の時期</li>
             <li>生徒と来場者のおおよその人数</li>
-            <li>相談したいこと（たとえば「費用の目安を知りたい」「資料だけほしい」）</li>
+            <li><span>相談したいこと<wbr>（たとえば<span class="kp">「費用の目安を知りたい」</span><wbr><span class="nw">「資料だけほしい」</span>）</span></li>
           </ol>
           <p>お電話がよい場合は、お名前と電話番号、ご都合のよい時間帯を書き添えてください。電話番号は、学校の代表番号でも大丈夫です。</p>
           <a class="btn btn-dark" href="mailto:t.nakajo@tea-break.co.jp?subject=%E5%AD%A6%E5%9C%92%E7%A5%AD%E3%81%AE%E4%BC%9A%E8%A8%88%EF%BC%88MeiPay%EF%BC%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6&body=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BETeaBreak%E3%80%80%E4%BB%B2%E6%9D%A1%E6%A7%98%0D%0A%0D%0AMeiPay%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%80%81%E7%9B%B8%E8%AB%87%E3%81%95%E3%81%9B%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0D%0A%0D%0A%E5%AD%A6%E6%A0%A1%E5%90%8D%EF%BC%9A%0D%0A%E8%A1%8C%E4%BA%8B%E3%81%AE%E6%99%82%E6%9C%9F%EF%BC%9A%0D%0A%E7%94%9F%E5%BE%92%E3%81%A8%E6%9D%A5%E5%A0%B4%E8%80%85%E3%81%AE%E3%81%8A%E3%81%8A%E3%82%88%E3%81%9D%E3%81%AE%E4%BA%BA%E6%95%B0%EF%BC%9A%0D%0A%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E4%B8%80%E8%A8%80%E3%81%A7%E6%A7%8B%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%EF%BC%89%EF%BC%9A%0D%0A%0D%0A%E9%9B%BB%E8%A9%B1%E3%81%A7%E3%81%AE%E9%80%A3%E7%B5%A1%E3%82%92%E5%B8%8C%E6%9C%9B%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%A0%E3%81%91%0D%0A%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0D%0A%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%EF%BC%9A%0D%0A%E3%81%94%E9%83%BD%E5%90%88%E3%81%AE%E3%82%88%E3%81%84%E6%99%82%E9%96%93%E5%B8%AF%EF%BC%9A%0D%0A"><svg class="ic-svg" aria-hidden="true"><use href="#i-mail"/></svg>メールで相談する</a>
@@ -941,7 +944,7 @@
 <section id="reports" aria-labelledby="reports-h">
   <div class="wrap">
     <p class="eyebrow">資料</p>
-    <h2 id="reports-h">運用報告と、学校向けのご案内</h2>
+    <h2 id="reports-h"><span class="nw">運用報告と、</span><wbr><span class="nw">学校向けのご案内</span></h2>
     <p class="measure">運用報告の公開版は、学校へ提出した報告を、学校の了承を得て公開用にまとめたものです。職員会議などでのご説明には、運用報告と、<span class="nw">A4・1枚</span>の「学校向けのご案内」をお使いください。</p>
     <ul class="reports">
       <li><a href="files/meipay-report-honkou-2026-public.pdf"><span class="pdf">PDF</span><span><b>MeiPay運用報告 公開版<br>（<span class="nw">2026明聖祭</span>・本校・<span class="nw">10月23日〜24日）</span></b><small><span class="nw">3ページ</span></small></span></a></li>
